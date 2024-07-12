@@ -14,6 +14,9 @@ sky_material = SubResource("PanoramaSkyMaterial_ysluh")
 background_mode = 2
 sky = SubResource("Sky_p3q7f")
 tonemap_mode = 2
+ssr_enabled = true
+ssao_enabled = true
+ssil_enabled = true
 glow_enabled = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6chb2"]
@@ -31,10 +34,10 @@ transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75
 shadow_enabled = true
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -12.7244, 0)
 material_override = SubResource("StandardMaterial3D_6chb2")
 use_collision = true
 collision_mask = 6
-size = Vector3(18.2861, 1, 1)
+size = Vector3(18.2861, 22.4487, 1)
 
 [node name="Player" parent="." instance=ExtResource("3_5b2j6")]
