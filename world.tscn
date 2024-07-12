@@ -1,0 +1,40 @@
+[gd_scene load_steps=8 format=3 uid="uid://cmby72mtdbdsg"]
+
+[ext_resource type="Texture2D" uid="uid://bwfh42umg77s4" path="res://assets/SkyHDR.hdr" id="1_hcn6c"]
+[ext_resource type="Texture2D" uid="uid://cqsynno34joei" path="res://assets/texture_01.png" id="2_aqqbd"]
+[ext_resource type="PackedScene" uid="uid://b88gw4ibis1fy" path="res://player.tscn" id="3_5b2j6"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_ysluh"]
+panorama = ExtResource("1_hcn6c")
+
+[sub_resource type="Sky" id="Sky_p3q7f"]
+sky_material = SubResource("PanoramaSkyMaterial_ysluh")
+
+[sub_resource type="Environment" id="Environment_c7kd5"]
+background_mode = 2
+sky = SubResource("Sky_p3q7f")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6chb2"]
+albedo_texture = ExtResource("2_aqqbd")
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[node name="Node3D" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_c7kd5")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
+material_override = SubResource("StandardMaterial3D_6chb2")
+use_collision = true
+collision_mask = 6
+size = Vector3(18.2861, 1, 1)
+
+[node name="Player" parent="." instance=ExtResource("3_5b2j6")]
