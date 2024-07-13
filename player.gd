@@ -6,19 +6,24 @@ extends CharacterBody3D
 @export var speed = 5.0
 @export var jump_height = 8.5
 @export var lookahead = 4
+@export var total_jumps = 2
 
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 var camera_x_offset: float
+var jumps = total_jumps
 
 func _physics_process(delta: float) -> void:
 	camera.position.x = position.x + camera_x_offset
 
-	if not is_on_floor():
+	if is_on_floor():
+		jumps = total_jumps
+	else:
 		velocity.y -= gravity * delta
 
 
-	if Input.is_action_just_pressed("jump") and is_on_floor():
+	if Input.is_action_just_pressed("jump") and jumps > 0:
 		velocity.y = jump_height
+		jumps -= 1
 
 	var input_dir := Input.get_axis("left", "right")
 	var direction := (transform.basis * Vector3(input_dir, 0, 0)).normalized()
