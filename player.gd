@@ -8,7 +8,7 @@ extends CharacterBody3D
 @export var lookahead = 4
 @export var total_jumps = 2
 
-var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
+var gravity: float = 10
 var camera_x_offset: float
 var jumps = total_jumps
 
