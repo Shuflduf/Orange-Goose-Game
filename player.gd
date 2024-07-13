@@ -1,14 +1,16 @@
+class_name Player
 extends CharacterBody3D
 
 @onready var camera: Camera3D = $Camera3D
 @onready var sprite: Sprite3D = $Sprite3D
+@onready var area: Area3D = $Area3D
 
 @export var speed = 5.0
 @export var jump_height = 8.5
 @export var lookahead = 4
 @export var total_jumps = 2
 
-var gravity: float = 10
+var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 var camera_x_offset: float
 var jumps = total_jumps
 
@@ -41,3 +43,15 @@ func change_dir_left(dir):
 		var tween = get_tree().create_tween().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 		tween.tween_property(self, "camera_x_offset", lookahead * mult, 0.5)
 	sprite.flip_h = dir
+
+
+
+
+func _on_area_3d_area_entered(area: Area3D) -> void:
+	if area is Water:
+		gravity = -ProjectSettings.get_setting("physics/3d/default_gravity")
+
+
+func _on_area_3d_area_exited(area: Area3D) -> void:
+	if area is Water:
+		gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
