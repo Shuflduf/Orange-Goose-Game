@@ -19,7 +19,7 @@ region_enabled = true
 region_rect = Rect2(5, 3, 23, 26)
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 9)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 14)
 top_level = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

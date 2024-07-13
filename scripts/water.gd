@@ -1,4 +1,4 @@
 class_name Water
 extends Area3D
 
-#@export var
+@export var gravity_mult = 0.7

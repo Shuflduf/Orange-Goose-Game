@@ -27,11 +27,15 @@ uv1_triplanar = true
 uv1_world_triplanar = true
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_onsn5"]
-size = Vector3(36, 22, 30)
+size = Vector3(36, 20, 30)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_qvjsa"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t7i0q"]
+render_priority = 1
+transparency = 1
+albedo_color = Color(0.25, 0.4625, 1, 0.25098)
 
-[sub_resource type="BoxMesh" id="BoxMesh_huirv"]
+[sub_resource type="BoxMesh" id="BoxMesh_5c4xe"]
+size = Vector3(36, 20, 30)
 
 [node name="Node3D" type="Node3D"]
 
@@ -65,17 +69,13 @@ gravity_direction = Vector3(0, 1, 0)
 script = ExtResource("4_480l2")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D/Water"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.869392, -12.3962, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.869392, -13.3962, 0)
 shape = SubResource("BoxShape3D_onsn5")
 
-[node name="RigidBody3D" type="RigidBody3D" parent="Node3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 1, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D/RigidBody3D"]
-shape = SubResource("BoxShape3D_qvjsa")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D/RigidBody3D"]
-mesh = SubResource("BoxMesh_huirv")
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, -13.3, 0)
+material_override = SubResource("StandardMaterial3D_t7i0q")
+mesh = SubResource("BoxMesh_5c4xe")
 
 [connection signal="body_entered" from="Node3D/Water" to="Player" method="_on_water_body_entered"]
 [connection signal="body_exited" from="Node3D/Water" to="Player" method="_on_water_body_exited"]
