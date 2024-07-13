@@ -38,6 +38,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -12.7244, 0)
 material_override = SubResource("StandardMaterial3D_6chb2")
 use_collision = true
 collision_mask = 6
-size = Vector3(18.2861, 22.4487, 1)
+size = Vector3(60.0586, 22.4487, 30.1865)
 
 [node name="Player" parent="." instance=ExtResource("3_5b2j6")]
