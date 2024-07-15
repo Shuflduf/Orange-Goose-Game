@@ -814,14 +814,12 @@ texture_filter = 0
 texture = ExtResource("5_ow0cn")
 
 [node name="Eye" type="Sprite3D" parent="Sprites"]
-transform = Transform3D(0.979837, 0.1998, 0, -0.1998, 0.979837, 0, 0, 0, 1, 0, 0.0127183, 0)
 sorting_offset = 1.0
 alpha_cut = 2
 texture_filter = 0
 texture = ExtResource("3_qodtw")
 
 [node name="Beak" type="Sprite3D" parent="Sprites"]
-transform = Transform3D(0.979837, 0.1998, 0, -0.1998, 0.979837, 0, 0, 0, 1, 0, 0.0127183, 0)
 sorting_offset = 0.5
 alpha_cut = 2
 texture_filter = 0
