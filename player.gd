@@ -51,13 +51,7 @@ func _physics_process(delta: float) -> void:
 	else:
 		weight_mult = 1
 
-	if Input.is_action_just_pressed("jump") and jumps > 0 and !in_water:
-		velocity.y = jump_height
-		jumps -= 1
-		animation.play("jump")
-		animation.queue("jump_up")
-		#await animation.animation_finished
-		#animation.play("jump_up")
+	
 
 	var input_dir := Input.get_axis("left", "right")
 	var direction := (transform.basis * Vector3(input_dir, 0, 0)).normalized()
@@ -70,10 +64,16 @@ func _physics_process(delta: float) -> void:
 		change_dir_left(input_dir < 0)
 		velocity.x = direction.x * (speed if !running else running_speed)
 	else:
-		if is_on_floor() and velocity.y > 0.1:
+		if is_on_floor():
 			animation.play("idle")
 		velocity.x = move_toward(velocity.x, 0, speed)
-
+		
+	if Input.is_action_just_pressed("jump") and jumps > 0 and !in_water:
+			velocity.y = jump_height
+			jumps -= 1
+			animation.play("jump", 0.1)
+			animation.queue("jump_up")
+			
 	move_and_slide()
 
 func change_dir_left(dir: bool):
