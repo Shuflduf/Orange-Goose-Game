@@ -18,12 +18,11 @@ var water_offset: Vector2 # Y and Z
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 var jumps = total_jumps
 var weight_mult = 1
-var in_water = false:
-	set(value):
-		in_water = value
-		print(value)
+var in_water = false
 var following_player_y = false
 var default_cam_pos: Vector3
+
+var running = false
 
 func _ready() -> void:
 	default_cam_pos = camera.position
@@ -38,6 +37,11 @@ func _physics_process(delta: float) -> void:
 		jumps = total_jumps
 	else:
 		velocity.y -= gravity * delta * weight_mult
+	
+	if Input.is_action_just_pressed("run"):
+		running = true
+	elif Input.is_action_just_released("run"):
+		running = false
 	
 	if Input.is_action_pressed("down"):
 		weight_mult = -2 if in_water else 3
