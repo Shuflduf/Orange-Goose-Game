@@ -73,7 +73,10 @@ func _physics_process(delta: float) -> void:
 			jumps -= 1
 			animation.play("jump", 0.1)
 			animation.queue("jump_up")
-			
+	
+	if !is_on_floor() and velocity.y < 0:
+		animation.play("falling")
+	
 	move_and_slide()
 
 func change_dir_left(dir: bool):
