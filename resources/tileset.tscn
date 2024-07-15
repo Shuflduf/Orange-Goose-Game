@@ -1,8 +1,17 @@
-[gd_scene load_steps=2 format=3 uid="uid://jrgmsu1gncor"]
+[gd_scene load_steps=3 format=3 uid="uid://jrgmsu1gncor"]
 
 [ext_resource type="ArrayMesh" uid="uid://copkcxr26jimy" path="res://assets/world/tilemap_cube.tres" id="2_xsknf"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mssry"]
+size = Vector3(2, 2, 2)
 
 [node name="Node3D" type="Node3D"]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = ExtResource("2_xsknf")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+shape = SubResource("BoxShape3D_mssry")

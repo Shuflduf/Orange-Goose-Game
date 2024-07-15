@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cmby72mtdbdsg"]
+[gd_scene load_steps=14 format=3 uid="uid://cmby72mtdbdsg"]
 
 [ext_resource type="Texture2D" uid="uid://bwfh42umg77s4" path="res://assets/SkyHDR.hdr" id="1_hcn6c"]
 [ext_resource type="Texture2D" uid="uid://cqsynno34joei" path="res://assets/texture_01.png" id="2_aqqbd"]
@@ -38,6 +38,8 @@ size = Vector3(36, 20, 50)
 albedo_texture = ExtResource("2_aqqbd")
 uv1_triplanar = true
 uv1_world_triplanar = true
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_id07t"]
 
 [node name="Node3D" type="Node3D"]
 
@@ -98,9 +100,11 @@ size = Vector3(39, 1, 46)
 
 [node name="GridMap" type="GridMap" parent="."]
 mesh_library = ExtResource("5_21y1x")
+physics_material = SubResource("PhysicsMaterial_id07t")
 data = {
-"cells": PackedInt32Array(4, 5, 0, 3, 5, 0, 2, 5, 0, 1, 5, 0, 0, 5, 0, 65535, 5, 0, 65534, 5, 0, 65533, 5, 0, 65532, 5, 0, 65528, 65532, 0, 65527, 65532, 0, 65526, 65532, 0, 65526, 65533, 0, 65525, 65533, 0, 65525, 65534, 0, 65526, 65534, 0, 65526, 65535, 0, 65527, 65535, 0, 65528, 65535, 0, 65528, 65534, 0, 65528, 65533, 0, 65527, 65533, 0, 65527, 65534, 0, 65531, 65535, 0, 65530, 65535, 0, 65529, 65535, 0, 65529, 0, 0, 65529, 1, 0, 65529, 2, 0, 65530, 2, 0, 65530, 1, 0, 65530, 0, 0)
+"cells": PackedInt32Array(4, 5, 0, 3, 5, 0, 2, 5, 0, 1, 5, 0, 0, 5, 0, 65535, 5, 0, 65534, 5, 0, 65533, 5, 0, 65532, 5, 0, 65528, 65532, 0, 65527, 65532, 0, 65526, 65532, 0, 65526, 65533, 0, 65525, 65533, 0, 65525, 65534, 0, 65526, 65534, 0, 65526, 65535, 0, 65527, 65535, 0, 65528, 65535, 0, 65528, 65534, 0, 65528, 65533, 0, 65527, 65533, 0, 65527, 65534, 0, 65531, 65535, 0, 65530, 65535, 0, 65529, 65535, 0, 65529, 0, 0, 65529, 1, 0, 65529, 2, 0, 65530, 2, 0, 65530, 1, 0, 65530, 0, 0, -8, 0, 0, -9, 0, 0, -10, 0, 0, -8, 1, 0, -9, 1, 0, -10, 1, 0)
 }
+metadata/_editor_floor_ = Vector3(0, -1, 0)
 
 [connection signal="body_entered" from="Obstacles/WaterNode/Water" to="Player" method="_on_water_body_entered"]
 [connection signal="body_exited" from="Obstacles/WaterNode/Water" to="Player" method="_on_water_body_exited"]
