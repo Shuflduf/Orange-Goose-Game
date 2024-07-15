@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://jrgmsu1gncor"]
+
+[ext_resource type="ArrayMesh" uid="uid://copkcxr26jimy" path="res://assets/world/tilemap_cube.tres" id="2_xsknf"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = ExtResource("2_xsknf")

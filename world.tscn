@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://cmby72mtdbdsg"]
+[gd_scene load_steps=13 format=3 uid="uid://cmby72mtdbdsg"]
 
 [ext_resource type="Texture2D" uid="uid://bwfh42umg77s4" path="res://assets/SkyHDR.hdr" id="1_hcn6c"]
 [ext_resource type="Texture2D" uid="uid://cqsynno34joei" path="res://assets/texture_01.png" id="2_aqqbd"]
 [ext_resource type="PackedScene" uid="uid://b88gw4ibis1fy" path="res://player.tscn" id="3_5b2j6"]
 [ext_resource type="Script" path="res://scripts/water.gd" id="4_480l2"]
+[ext_resource type="MeshLibrary" uid="uid://d300dy0eq4pg1" path="res://resources/tiles.tres" id="5_21y1x"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_ysluh"]
 panorama = ExtResource("1_hcn6c")
@@ -94,6 +95,12 @@ material_override = SubResource("StandardMaterial3D_6chb2")
 use_collision = true
 collision_mask = 6
 size = Vector3(39, 1, 46)
+
+[node name="GridMap" type="GridMap" parent="."]
+mesh_library = ExtResource("5_21y1x")
+data = {
+"cells": PackedInt32Array(4, 5, 0, 3, 5, 0, 2, 5, 0, 1, 5, 0, 0, 5, 0, 65535, 5, 0, 65534, 5, 0, 65533, 5, 0, 65532, 5, 0, 65528, 65532, 0, 65527, 65532, 0, 65526, 65532, 0, 65526, 65533, 0, 65525, 65533, 0, 65525, 65534, 0, 65526, 65534, 0, 65526, 65535, 0, 65527, 65535, 0, 65528, 65535, 0, 65528, 65534, 0, 65528, 65533, 0, 65527, 65533, 0, 65527, 65534, 0, 65531, 65535, 0, 65530, 65535, 0, 65529, 65535, 0, 65529, 0, 0, 65529, 1, 0, 65529, 2, 0, 65530, 2, 0, 65530, 1, 0, 65530, 0, 0)
+}
 
 [connection signal="body_entered" from="Obstacles/WaterNode/Water" to="Player" method="_on_water_body_entered"]
 [connection signal="body_exited" from="Obstacles/WaterNode/Water" to="Player" method="_on_water_body_exited"]
