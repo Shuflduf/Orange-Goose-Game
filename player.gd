@@ -29,7 +29,7 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	camera.position.x = default_cam_pos.x + position.x + ahead_offset
 	camera.position.z = default_cam_pos.z + water_offset.y
-	#camera.position 
+	camera.position.y = default_cam_pos.y + water_offset.x
 	
 	if is_on_floor():
 		jumps = total_jumps
