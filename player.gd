@@ -3,6 +3,7 @@ extends CharacterBody3D
 
 @onready var camera: Camera3D = $Camera3D
 @onready var sprites: Node3D = $Sprites
+@onready var animation: AnimationPlayer = $AnimationPlayer
 
 @export var speed = 5.0
 @export var jump_height = 8.5
@@ -55,9 +56,14 @@ func _physics_process(delta: float) -> void:
 	var input_dir := Input.get_axis("left", "right")
 	var direction := (transform.basis * Vector3(input_dir, 0, 0)).normalized()
 	if direction:
+		animation.play("walk")
 		change_dir_left(input_dir < 0)
 		velocity.x = direction.x * speed
 	else:
+		if animation.current_animation != "idle":
+			print(animation.current_animation)
+			animation.play("RESET")
+			animation.play("idle")
 		velocity.x = move_toward(velocity.x, 0, speed)
 
 	move_and_slide()
