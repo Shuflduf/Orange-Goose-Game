@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://b88gw4ibis1fy"]
+[gd_scene load_steps=14 format=3 uid="uid://b88gw4ibis1fy"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_52rpn"]
 [ext_resource type="Texture2D" uid="uid://p3wddy5561vo" path="res://assets/goose/goose_body.png" id="2_8rj22"]
@@ -600,23 +600,6 @@ _data = {
 "walk": SubResource("Animation_aqyii")
 }
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_s5f5i"]
-animation = &"jump"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_b6qqx"]
-animation = &"jump_up"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_kn2p2"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_88n73"]
-
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_f32ri"]
-states/jump/node = SubResource("AnimationNodeAnimation_s5f5i")
-states/jump/position = Vector2(361, 111)
-states/jump_up/node = SubResource("AnimationNodeAnimation_b6qqx")
-states/jump_up/position = Vector2(486, 111)
-transitions = ["Start", "jump", SubResource("AnimationNodeStateMachineTransition_kn2p2"), "jump", "jump_up", SubResource("AnimationNodeStateMachineTransition_88n73")]
-
 [node name="Player" type="CharacterBody3D"]
 collision_layer = 2
 script = ExtResource("1_52rpn")
@@ -651,14 +634,14 @@ texture_filter = 0
 texture = ExtResource("5_ow0cn")
 
 [node name="Eye" type="Sprite3D" parent="Sprites"]
-transform = Transform3D(0.977501, 0.210932, 0, -0.210932, 0.977501, 0, 0, 0, 1, 0, 0.0142277, 0)
+transform = Transform3D(0.977501, 0.210932, 0, -0.210932, 0.977501, 0, 0, 0, 1, 0, 0.0142278, 0)
 sorting_offset = 1.0
 alpha_cut = 2
 texture_filter = 0
 texture = ExtResource("3_qodtw")
 
 [node name="Beak" type="Sprite3D" parent="Sprites"]
-transform = Transform3D(0.977501, 0.210932, 0, -0.210932, 0.977501, 0, 0, 0, 1, 0, 0.0142277, 0)
+transform = Transform3D(0.977501, 0.210932, 0, -0.210932, 0.977501, 0, 0, 0, 1, 0, 0.0142278, 0)
 sorting_offset = 0.5
 alpha_cut = 2
 texture_filter = 0
@@ -684,13 +667,8 @@ libraries = {
 "": SubResource("AnimationLibrary_tkf3m")
 }
 autoplay = "idle"
-playback_default_blend_time = 0.5
 speed_scale = 2.0
-
-[node name="AnimationTree" type="AnimationTree" parent="."]
-active = false
-tree_root = SubResource("AnimationNodeStateMachine_f32ri")
-anim_player = NodePath("../AnimationPlayer")
 
 [connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]
 [connection signal="area_exited" from="Area3D" to="." method="_on_area_3d_area_exited"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
