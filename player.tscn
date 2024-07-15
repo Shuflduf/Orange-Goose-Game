@@ -217,6 +217,8 @@ tracks/8/keys = {
 
 [sub_resource type="Animation" id="Animation_jei5g"]
 resource_name = "run"
+loop_mode = 1
+step = 0.05
 tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -224,9 +226,9 @@ tracks/0/path = NodePath("Sprites/RightFoot:rotation:z")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0.35671, -0.25, 0, 0.25, 0, 0.356701, -0.25, 0, 0.25, 0, -0.162, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(-0.00178907, 0, 1)
 }
 tracks/1/type = "bezier"
 tracks/1/imported = false
@@ -235,9 +237,9 @@ tracks/1/path = NodePath("Sprites/RightFoot:position:x")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(0.11, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0.092648, -0.25, 0, 0.25, 0, -0.025, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
 }
 tracks/2/type = "bezier"
 tracks/2/imported = false
@@ -246,9 +248,75 @@ tracks/2/path = NodePath("Sprites/RightFoot:position:y")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0.028, -0.25, 0, 0.25, 0, -0.012, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprites/LeftFoot:rotation:z")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0, 3, 0),
+"points": PackedFloat32Array(-0.161984, -0.25, 0, 0.0982109, 0.00216755, 0.0295833, -0.201789, -0.00401208, 0.25, 0, 0.106331, -0.0679845, -0.0368356, 0.0679845, 0.0368356, 0.357, -0.128725, -0.0015918, 0.25, 0),
+"times": PackedFloat32Array(0, 0.3, 0.661955, 1)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sprites/LeftFoot:position:x")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-0.0250641, -0.25, 0, 0.25, 0, 0.093, -0.350569, 4.79743e-05, 0.0841744, -0.00193632),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Sprites/LeftFoot:position:y")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0, 0, 1, 0),
+"points": PackedFloat32Array(-0.011568, -0.25, 0, 0.25, 0, -0.011568, -0.25, 0, 0.25, 0, 0.0024068, 0, 0, 0, 0, 0.0279855, -0.0571619, 9.51365e-05, 0.25, 0),
+"times": PackedFloat32Array(0, 0.3, 0.663744, 0.994721)
+}
+tracks/6/type = "bezier"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Sprites/Body:rotation:z")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(0.315311, -0.25, 0, 0.25, 0, 0.234835, -0.25, 0, 0.25, 0, 0.37495, -0.25, 0, 0.25, 0, 0.235, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(-0.00178907, 0, 0.5, 1)
+}
+tracks/7/type = "bezier"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Sprites/Body:position:x")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5, 1)
+}
+tracks/8/type = "bezier"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Sprites/Body:position:y")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0.00385603, -0.25, 0, 0.25, 0, -0.0254932, -0.25, 0, 0.25, 0, 0.00385603, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5, 1)
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tkf3m"]
@@ -266,30 +334,43 @@ script = ExtResource("1_52rpn")
 transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, 0, 0, 0)
 
 [node name="Body" type="Sprite3D" parent="Sprites"]
+alpha_cut = 2
 texture_filter = 0
 texture = ExtResource("2_8rj22")
 
-[node name="Eye" type="Sprite3D" parent="Sprites/Body"]
-sorting_offset = 1.0
-texture_filter = 0
-texture = ExtResource("3_qodtw")
+[node name="RemoteTransform3D" type="RemoteTransform3D" parent="Sprites/Body"]
+remote_path = NodePath("../../Eye")
 
-[node name="Beak" type="Sprite3D" parent="Sprites/Body"]
-sorting_offset = 0.5
-texture_filter = 0
-texture = ExtResource("4_8pr8m")
+[node name="RemoteTransform3D2" type="RemoteTransform3D" parent="Sprites/Body"]
+remote_path = NodePath("../../Beak")
 
 [node name="LeftFoot" type="Sprite3D" parent="Sprites"]
 transform = Transform3D(0.983581, 0.180468, 0, -0.180468, 0.983581, 0, 0, 0, 1, -0.0168306, -0.0197026, 0)
 sorting_offset = -1.0
+alpha_cut = 2
 texture_filter = 0
 texture = ExtResource("5_ow0cn")
 
 [node name="RightFoot" type="Sprite3D" parent="Sprites"]
 transform = Transform3D(0.974527, -0.224271, 0, 0.224271, 0.974527, 0, 0, 0, 1, 0, -0.0264687, 0)
 sorting_offset = -0.9
+alpha_cut = 2
 texture_filter = 0
 texture = ExtResource("5_ow0cn")
+
+[node name="Eye" type="Sprite3D" parent="Sprites"]
+transform = Transform3D(0.998901, -0.0468777, 0, 0.0468777, 0.998901, 0, 0, 0, 1, 0, -0.0143586, 0)
+sorting_offset = 1.0
+alpha_cut = 2
+texture_filter = 0
+texture = ExtResource("3_qodtw")
+
+[node name="Beak" type="Sprite3D" parent="Sprites"]
+transform = Transform3D(0.998901, -0.0468777, 0, 0.0468777, 0.998901, 0, 0, 0, 1, 0, -0.0143586, 0)
+sorting_offset = 0.5
+alpha_cut = 2
+texture_filter = 0
+texture = ExtResource("4_8pr8m")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 14)
@@ -310,6 +391,7 @@ shape = SubResource("BoxShape3D_jja6d")
 libraries = {
 "": SubResource("AnimationLibrary_tkf3m")
 }
+autoplay = "walk"
 speed_scale = 2.0
 
 [connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]
