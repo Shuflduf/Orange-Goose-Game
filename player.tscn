@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://b88gw4ibis1fy"]
+[gd_scene load_steps=16 format=3 uid="uid://b88gw4ibis1fy"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_52rpn"]
 [ext_resource type="Texture2D" uid="uid://p3wddy5561vo" path="res://assets/goose/goose_body.png" id="2_8rj22"]
@@ -109,6 +109,42 @@ tracks/8/keys = {
 "handle_modes": PackedInt32Array(0),
 "points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Sprites/LeftFoot:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Sprites/RightFoot:visible")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Sprites/Body:position")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_6iwp1"]
@@ -693,6 +729,47 @@ tracks/8/keys = {
 "times": PackedFloat32Array(0, 0.5, 1)
 }
 
+[sub_resource type="Animation" id="Animation_inn0i"]
+resource_name = "swimming"
+length = 0.001
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprites/Body:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -0.0699617, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprites/LeftFoot:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprites/RightFoot:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tkf3m"]
 _data = {
 "RESET": SubResource("Animation_o4w3y"),
@@ -701,6 +778,7 @@ _data = {
 "jump": SubResource("Animation_mk2as"),
 "jump_up": SubResource("Animation_1tbvq"),
 "run": SubResource("Animation_jei5g"),
+"swimming": SubResource("Animation_inn0i"),
 "walk": SubResource("Animation_aqyii")
 }
 
@@ -736,14 +814,14 @@ texture_filter = 0
 texture = ExtResource("5_ow0cn")
 
 [node name="Eye" type="Sprite3D" parent="Sprites"]
-transform = Transform3D(0.920158, -0.391546, 0, 0.391546, 0.920158, 0, 0, 0, 1, 0.00741472, 0.0148296, 0)
+transform = Transform3D(0.979837, 0.1998, 0, -0.1998, 0.979837, 0, 0, 0, 1, 0, 0.0127183, 0)
 sorting_offset = 1.0
 alpha_cut = 2
 texture_filter = 0
 texture = ExtResource("3_qodtw")
 
 [node name="Beak" type="Sprite3D" parent="Sprites"]
-transform = Transform3D(0.920158, -0.391546, 0, 0.391546, 0.920158, 0, 0, 0, 1, 0.00741472, 0.0148296, 0)
+transform = Transform3D(0.979837, 0.1998, 0, -0.1998, 0.979837, 0, 0, 0, 1, 0, 0.0127183, 0)
 sorting_offset = 0.5
 alpha_cut = 2
 texture_filter = 0

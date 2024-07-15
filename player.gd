@@ -56,7 +56,7 @@ func _physics_process(delta: float) -> void:
 	var input_dir := Input.get_axis("left", "right")
 	var direction := (transform.basis * Vector3(input_dir, 0, 0)).normalized()
 	if direction:
-		if is_on_floor():
+		if is_on_floor() and !in_water:
 			if running:
 				animation.play("run")
 			else:
@@ -64,7 +64,7 @@ func _physics_process(delta: float) -> void:
 		change_dir_left(input_dir < 0)
 		velocity.x = direction.x * (speed if !running else running_speed)
 	else:
-		if is_on_floor():
+		if is_on_floor() and !in_water:
 			animation.play("idle")
 		velocity.x = move_toward(velocity.x, 0, speed)
 		
@@ -74,7 +74,7 @@ func _physics_process(delta: float) -> void:
 			animation.play("jump", 0.1)
 			animation.queue("jump_up")
 	
-	if !is_on_floor() and velocity.y < 0:
+	if !is_on_floor() and velocity.y < 0 and !in_water:
 		animation.play("falling")
 	
 	move_and_slide()
@@ -90,6 +90,9 @@ func change_dir_left(dir: bool):
 func _on_area_3d_area_entered(area: Area3D) -> void:
 	if area is Water:
 		in_water = true
+		#if animation.current_animation != "swimming":
+			#animation.play("RESET")
+		animation.play("swimming")
 		var tween = get_tree().create_tween().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 		tween.tween_property(self, "water_offset", default_water_offset, 0.5)
 		gravity = -ProjectSettings.get_setting("physics/3d/default_gravity") * area.gravity_mult
@@ -98,15 +101,15 @@ func _on_area_3d_area_entered(area: Area3D) -> void:
 func _on_area_3d_area_exited(area: Area3D) -> void:
 	if area is Water:
 		in_water = false
+		animation.play("RESET", 0)
 		var tween = get_tree().create_tween().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 		tween.tween_property(self, "water_offset", Vector2.ZERO, 0.5)
-		gravity = ProjectSettings.get_setting("physics/3d/default_gravity") 
+		gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
+		
+		animation.queue("jump_up" if velocity.y > 0 else "falling")
 
 func flip_sprites(dir: bool):
 	var offset = 1 if dir else -1
 	sprites.scale.x = 8 * offset
 
 
-#func _on_animation_player_animation_finished(anim_name: StringName) -> void:
-	#if anim_name == "jump":
-		#animation.play("jump_up")
