@@ -7,7 +7,7 @@ extends CharacterBody3D
 
 @export var speed = 5.0
 @export var running_speed = 8.0
-@export var jump_height = 8.5
+@export var jump_height = 11.0
 @export var total_jumps = 2
 
 @export_category("Camera Offsets")
@@ -18,6 +18,7 @@ var ahead_offset: float
 var water_offset: Vector2 # Y and Z
 
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
+var gravity_mult = 1.5
 var jumps = total_jumps
 var weight_mult = 1
 var in_water = false
@@ -38,7 +39,7 @@ func _physics_process(delta: float) -> void:
 	if is_on_floor() and !in_water:
 		jumps = total_jumps
 	else:
-		velocity.y -= gravity * delta * weight_mult
+		velocity.y -= gravity * delta * weight_mult * gravity_mult
 	
 	if Input.is_action_just_pressed("run"):
 		running = true
