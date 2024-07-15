@@ -13,6 +13,7 @@ extends CharacterBody3D
 
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 var camera_x_offset: float
+var camera_water_offset
 var jumps = total_jumps
 var weight_mult = 1
 var in_water = false
@@ -24,7 +25,8 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	camera.position.x = position.x + camera_x_offset
-
+	#camera.position 
+	
 	if is_on_floor():
 		jumps = total_jumps
 	else:
@@ -62,7 +64,8 @@ func _on_area_3d_area_entered(area: Area3D) -> void:
 	if area is Water:
 		in_water = true
 		var tween = get_tree().create_tween().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
-		tween.tween_property(camera, "position", position + in_water_offset + default_cam_pos, 0.5)
+		tween.tween_property(camera, "position", \
+		position + in_water_offset + default_cam_pos + Vector3(camera_x_offset, 0, 0), 0.5)
 		gravity = -ProjectSettings.get_setting("physics/3d/default_gravity") * area.gravity_mult
 
 
@@ -70,5 +73,6 @@ func _on_area_3d_area_exited(area: Area3D) -> void:
 	if area is Water:
 		in_water = false
 		var tween = get_tree().create_tween().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
-		tween.tween_property(camera, "position", position + default_cam_pos, 0.5)
+		tween.tween_property(camera, "position", \
+		position + default_cam_pos + Vector3(camera_x_offset, 0, 0), 0.5)
 		gravity = ProjectSettings.get_setting("physics/3d/default_gravity") 

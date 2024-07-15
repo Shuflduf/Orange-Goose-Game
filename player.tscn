@@ -1,7 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://b88gw4ibis1fy"]
+[gd_scene load_steps=8 format=3 uid="uid://b88gw4ibis1fy"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_52rpn"]
-[ext_resource type="Texture2D" uid="uid://cifpkrkg6ktux" path="res://assets/goose-temp.png" id="1_m3lq8"]
+[ext_resource type="Texture2D" uid="uid://p3wddy5561vo" path="res://assets/goose/goose_body.png" id="2_8rj22"]
+[ext_resource type="Texture2D" uid="uid://cb7ed8huqn6rr" path="res://assets/goose/goose_eye.png" id="3_qodtw"]
+[ext_resource type="Texture2D" uid="uid://cva38uhbtx7kj" path="res://assets/goose/goose_beak.png" id="4_8pr8m"]
+[ext_resource type="Texture2D" uid="uid://dcng0qc8hff2" path="res://assets/goose/goose_foot_l.png" id="5_ow0cn"]
+[ext_resource type="Texture2D" uid="uid://bsjwx1bjdyw64" path="res://assets/goose/goose_foot_r.png" id="6_cgjy1"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jja6d"]
 size = Vector3(2.3, 2.6, 1)
@@ -10,13 +14,30 @@ size = Vector3(2.3, 2.6, 1)
 collision_layer = 2
 script = ExtResource("1_52rpn")
 
-[node name="Sprite3D" type="Sprite3D" parent="."]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
-alpha_cut = 2
+[node name="Body" type="Sprite3D" parent="."]
+transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, 0, 0, 0)
 texture_filter = 0
-texture = ExtResource("1_m3lq8")
-region_enabled = true
-region_rect = Rect2(5, 3, 23, 26)
+texture = ExtResource("2_8rj22")
+
+[node name="Eye" type="Sprite3D" parent="Body"]
+sorting_offset = 1.0
+texture_filter = 0
+texture = ExtResource("3_qodtw")
+
+[node name="Beak" type="Sprite3D" parent="Body"]
+sorting_offset = 0.5
+texture_filter = 0
+texture = ExtResource("4_8pr8m")
+
+[node name="LeftFoot" type="Sprite3D" parent="Body"]
+sorting_offset = -1.0
+texture_filter = 0
+texture = ExtResource("5_ow0cn")
+
+[node name="RightFoot" type="Sprite3D" parent="Body"]
+sorting_offset = -0.9
+texture_filter = 0
+texture = ExtResource("6_cgjy1")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 14)
