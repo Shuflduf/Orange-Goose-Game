@@ -21,21 +21,22 @@ ssil_enabled = true
 glow_enabled = true
 volumetric_fog_density = 0.0
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6chb2"]
-albedo_texture = ExtResource("2_aqqbd")
-uv1_triplanar = true
-uv1_world_triplanar = true
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_onsn5"]
 size = Vector3(36, 20, 30)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t7i0q"]
 render_priority = 1
 transparency = 1
+cull_mode = 2
 albedo_color = Color(0.25, 0.4625, 1, 0.25098)
 
 [sub_resource type="BoxMesh" id="BoxMesh_5c4xe"]
-size = Vector3(36, 20, 30)
+size = Vector3(36, 20, 50)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6chb2"]
+albedo_texture = ExtResource("2_aqqbd")
+uv1_triplanar = true
+uv1_world_triplanar = true
 
 [node name="Node3D" type="Node3D"]
 
@@ -46,20 +47,15 @@ environment = SubResource("Environment_c7kd5")
 transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
 shadow_enabled = true
 
-[node name="CSGBox3D" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.0293, -12.7244, 0)
-material_override = SubResource("StandardMaterial3D_6chb2")
-use_collision = true
-collision_mask = 6
-size = Vector3(42, 22.4487, 30.1865)
-
 [node name="Player" parent="." instance=ExtResource("3_5b2j6")]
-default_water_offset = Vector2(19.835, 10)
+default_water_offset = Vector2(-10, 10)
 
-[node name="Node3D" type="Node3D" parent="."]
+[node name="Obstacles" type="Node3D" parent="."]
+
+[node name="WaterNode" type="Node3D" parent="Obstacles"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 0, 0)
 
-[node name="Water" type="Area3D" parent="Node3D"]
+[node name="Water" type="Area3D" parent="Obstacles/WaterNode"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 0)
 collision_mask = 0
 priority = 1
@@ -69,14 +65,35 @@ gravity_point_center = Vector3(0, 1, 0)
 gravity_direction = Vector3(0, 1, 0)
 script = ExtResource("4_480l2")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D/Water"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/WaterNode/Water"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.869392, -13.3962, 0)
 shape = SubResource("BoxShape3D_onsn5")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, -13.3, 0)
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Obstacles/WaterNode"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, -13.3, 12)
 material_override = SubResource("StandardMaterial3D_t7i0q")
 mesh = SubResource("BoxMesh_5c4xe")
 
-[connection signal="body_entered" from="Node3D/Water" to="Player" method="_on_water_body_entered"]
-[connection signal="body_exited" from="Node3D/Water" to="Player" method="_on_water_body_exited"]
+[node name="CSGBox3D" type="CSGBox3D" parent="Obstacles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.0293, -12.7244, 0)
+material_override = SubResource("StandardMaterial3D_6chb2")
+use_collision = true
+collision_mask = 6
+size = Vector3(42, 22.4487, 30.1865)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Obstacles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.9707, -12.7244, -14.0933)
+material_override = SubResource("StandardMaterial3D_6chb2")
+use_collision = true
+collision_mask = 6
+size = Vector3(42, 22.4487, 2)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Obstacles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.4707, -23.8946, 9.90675)
+material_override = SubResource("StandardMaterial3D_6chb2")
+use_collision = true
+collision_mask = 6
+size = Vector3(39, 1, 46)
+
+[connection signal="body_entered" from="Obstacles/WaterNode/Water" to="Player" method="_on_water_body_entered"]
+[connection signal="body_exited" from="Obstacles/WaterNode/Water" to="Player" method="_on_water_body_exited"]
