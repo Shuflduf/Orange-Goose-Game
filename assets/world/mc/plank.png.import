@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ku61yaldyktq"
-path="res://.godot/imported/bedrock.png-3b9321d654e8f2c63122ccc1950bbc1c.ctex"
+uid="uid://q6fsfw4w1p2c"
+path="res://.godot/imported/plank.png-14e707e37b7e3ecbd392c844edd45c78.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/world/bedrock.png"
-dest_files=["res://.godot/imported/bedrock.png-3b9321d654e8f2c63122ccc1950bbc1c.ctex"]
+source_file="res://assets/world/mc/plank.png"
+dest_files=["res://.godot/imported/plank.png-14e707e37b7e3ecbd392c844edd45c78.ctex"]
 
 [params]
 
