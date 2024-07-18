@@ -48,8 +48,12 @@ func _physics_process(delta: float) -> void:
 	
 	if Input.is_action_pressed("down"):
 		weight_mult = -2 if in_water else 3
+	elif Input.is_action_pressed("up") and in_water:
+		weight_mult = 2
 	else:
 		weight_mult = 1
+		
+	
 
 	var input_dir := Input.get_axis("left", "right")
 	var direction := (transform.basis * Vector3(input_dir, 0, 0)).normalized()
