@@ -107,6 +107,7 @@ func _on_area_3d_area_entered(area: Area3D) -> void:
 func _on_area_3d_area_exited(area: Area3D) -> void:
 	if area is Water:
 		sprites.rotation.z = 0
+		jumps = total_jumps
 		in_water = false
 		animation.play("RESET", 0)
 		var tween = get_tree().create_tween().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
