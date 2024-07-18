@@ -266,7 +266,7 @@ _surfaces = [{
 blend_shape_mode = 0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0iw3y"]
-size = Vector3(0.25, 2, 0.25)
+size = Vector3(0.25, 20, 0.25)
 
 [node name="Node3D" type="Node3D"]
 
@@ -423,4 +423,5 @@ mesh = ExtResource("15_soscg")
 collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Chain/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9, 0)
 shape = SubResource("BoxShape3D_0iw3y")
