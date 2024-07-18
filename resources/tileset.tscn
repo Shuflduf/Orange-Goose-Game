@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://jrgmsu1gncor"]
+[gd_scene load_steps=45 format=3 uid="uid://jrgmsu1gncor"]
 
 [ext_resource type="Texture2D" uid="uid://f4parbh5le6s" path="res://assets/world/mc/stone.png" id="2_84dbg"]
 [ext_resource type="ArrayMesh" uid="uid://copkcxr26jimy" path="res://assets/world/tilemap_cube.tres" id="2_xsknf"]
@@ -14,6 +14,7 @@
 [ext_resource type="ArrayMesh" uid="uid://t4b0iddkpsbe" path="res://assets/world/tilemap_slab.tres" id="12_g86rl"]
 [ext_resource type="Texture2D" uid="uid://bd061wbwi55rm" path="res://assets/world/mc/glass_pane_empty.png" id="13_x6jtj"]
 [ext_resource type="Texture2D" uid="uid://vcqa7xtd81eu" path="res://assets/world/mc/smooth_stone.png" id="14_2n1am"]
+[ext_resource type="ArrayMesh" uid="uid://cdkyteth4kva" path="res://assets/world/tilemap_chain.tres" id="15_soscg"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mssry"]
 size = Vector3(2, 2, 2)
@@ -264,6 +265,9 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_0iw3y"]
+size = Vector3(0.25, 2, 0.25)
+
 [node name="Node3D" type="Node3D"]
 
 [node name="Grass" type="MeshInstance3D" parent="."]
@@ -410,3 +414,13 @@ collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SmoothStone/StaticBody3D"]
 shape = SubResource("BoxShape3D_mssry")
+
+[node name="Chain" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 12)
+mesh = ExtResource("15_soscg")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Chain"]
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Chain/StaticBody3D"]
+shape = SubResource("BoxShape3D_0iw3y")
