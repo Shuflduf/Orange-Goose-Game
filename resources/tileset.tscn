@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://jrgmsu1gncor"]
+[gd_scene load_steps=25 format=3 uid="uid://jrgmsu1gncor"]
 
 [ext_resource type="Texture2D" uid="uid://f4parbh5le6s" path="res://assets/world/mc/stone.png" id="2_84dbg"]
 [ext_resource type="ArrayMesh" uid="uid://copkcxr26jimy" path="res://assets/world/tilemap_cube.tres" id="2_xsknf"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://bvrbpv3gabdqm" path="res://assets/world/mc/log.png" id="6_cirun"]
 [ext_resource type="Texture2D" uid="uid://d4fmenmd1jfa4" path="res://assets/world/mc/cobble.png" id="7_l1rlk"]
 [ext_resource type="ArrayMesh" uid="uid://bpyw5f4rty07v" path="res://assets/world/tilemap_stair.tres" id="8_mlw4f"]
+[ext_resource type="ArrayMesh" uid="uid://048wp6on01fu" path="res://assets/world/tilemap_corner.tres" id="9_7tx4l"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mssry"]
 size = Vector3(2, 2, 2)
@@ -229,4 +230,14 @@ mesh = ExtResource("8_mlw4f")
 collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="WoodPlankStair/StaticBody3D"]
+shape = SubResource("BoxShape3D_mssry")
+
+[node name="WoodPlankCornerStair" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, -8)
+mesh = ExtResource("9_7tx4l")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="WoodPlankCornerStair"]
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WoodPlankCornerStair/StaticBody3D"]
 shape = SubResource("BoxShape3D_mssry")
