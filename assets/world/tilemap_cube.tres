@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://dmppshaq57xp3" path="res://assets/world/mc/grass.png" id="1_l2q7k"]
 [ext_resource type="Texture2D" uid="uid://f4parbh5le6s" path="res://assets/world/mc/stone.png" id="2_2qhd1"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ci44c"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_euupg"]
 albedo_texture = ExtResource("1_l2q7k")
 texture_filter = 2
 
@@ -32,7 +32,7 @@ _surfaces = [{
 "format": 34896613399,
 "index_count": 36,
 "index_data": PackedByteArray(2, 0, 11, 0, 5, 0, 2, 0, 8, 0, 11, 0, 6, 0, 21, 0, 9, 0, 6, 0, 18, 0, 21, 0, 20, 0, 17, 0, 23, 0, 20, 0, 14, 0, 17, 0, 12, 0, 3, 0, 15, 0, 12, 0, 0, 0, 3, 0, 7, 0, 13, 0, 19, 0, 7, 0, 1, 0, 13, 0, 22, 0, 4, 0, 10, 0, 22, 0, 16, 0, 4, 0),
-"material": SubResource("StandardMaterial3D_ci44c"),
+"material": SubResource("StandardMaterial3D_euupg"),
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 24,

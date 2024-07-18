@@ -28,7 +28,7 @@ var default_cam_pos: Vector3
 var running = false
 
 func _ready() -> void:
-	default_cam_pos = camera.position
+	default_cam_pos = camera.position - position
 
 
 func _physics_process(delta: float) -> void:

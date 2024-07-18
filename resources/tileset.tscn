@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://jrgmsu1gncor"]
+[gd_scene load_steps=31 format=3 uid="uid://jrgmsu1gncor"]
 
 [ext_resource type="Texture2D" uid="uid://f4parbh5le6s" path="res://assets/world/mc/stone.png" id="2_84dbg"]
 [ext_resource type="ArrayMesh" uid="uid://copkcxr26jimy" path="res://assets/world/tilemap_cube.tres" id="2_xsknf"]
@@ -10,6 +10,7 @@
 [ext_resource type="ArrayMesh" uid="uid://bpyw5f4rty07v" path="res://assets/world/tilemap_stair.tres" id="8_mlw4f"]
 [ext_resource type="ArrayMesh" uid="uid://048wp6on01fu" path="res://assets/world/tilemap_corner.tres" id="9_7tx4l"]
 [ext_resource type="ArrayMesh" uid="uid://d4kkm33uf1c1x" path="res://assets/world/tilemap_pane.tres" id="10_4fj1i"]
+[ext_resource type="Texture2D" uid="uid://c20q4ujd14wja" path="res://assets/world/mc/leaves.png" id="11_xnw3i"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mssry"]
 size = Vector3(2, 2, 0.25)
@@ -152,6 +153,47 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nvmuf"]
+transparency = 1
+cull_mode = 2
+depth_draw_mode = 1
+albedo_texture = ExtResource("11_xnw3i")
+texture_filter = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jucpy"]
+albedo_texture = ExtResource("2_84dbg")
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_ynb8f"]
+_surfaces = [{
+"aabb": AABB(-1, -1, -1, 2, 2, 2.00001),
+"format": 34896613377,
+"index_count": 36,
+"index_data": PackedByteArray(0, 0, 3, 0, 1, 0, 0, 0, 2, 0, 3, 0, 2, 0, 7, 0, 3, 0, 2, 0, 6, 0, 7, 0, 6, 0, 5, 0, 7, 0, 6, 0, 4, 0, 5, 0, 4, 0, 1, 0, 5, 0, 4, 0, 0, 0, 1, 0, 2, 0, 4, 0, 6, 0, 2, 0, 0, 0, 4, 0, 7, 0, 1, 0, 3, 0, 7, 0, 5, 0, 1, 0),
+"material": SubResource("StandardMaterial3D_jucpy"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray(0, 0, 0, 0, 254, 255, 0, 0, 0, 0, 255, 255, 254, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 255, 0, 0, 0, 0, 255, 255, 0, 0, 254, 255, 0, 0, 255, 255, 255, 255, 254, 255, 0, 0, 255, 255, 0, 0, 0, 0, 0, 0, 255, 255, 255, 255, 0, 0, 0, 0)
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_arpkk"]
+resource_name = "tilemap_cube_Cube_001"
+_surfaces = [{
+"aabb": AABB(-1, -1, -1, 2, 2, 2.00001),
+"attribute_data": PackedByteArray(3, 0, 251, 255, 168, 170, 3, 0, 86, 85, 251, 255, 3, 0, 3, 0, 170, 170, 0, 0, 86, 85, 3, 0, 86, 85, 251, 255, 86, 85, 3, 0, 3, 0, 251, 255, 86, 85, 3, 0, 255, 255, 0, 0, 3, 0, 3, 0, 86, 85, 251, 255, 168, 170, 251, 255, 3, 0, 251, 255, 86, 85, 3, 0, 170, 170, 255, 255, 3, 0, 3, 0, 3, 0, 251, 255, 86, 85, 251, 255, 86, 85, 251, 255, 3, 0, 3, 0, 255, 255, 255, 255, 86, 85, 3, 0),
+"format": 34896613399,
+"index_count": 36,
+"index_data": PackedByteArray(2, 0, 11, 0, 5, 0, 2, 0, 8, 0, 11, 0, 6, 0, 21, 0, 9, 0, 6, 0, 18, 0, 21, 0, 20, 0, 17, 0, 23, 0, 20, 0, 14, 0, 17, 0, 12, 0, 3, 0, 15, 0, 12, 0, 0, 0, 3, 0, 7, 0, 13, 0, 19, 0, 7, 0, 1, 0, 13, 0, 22, 0, 4, 0, 10, 0, 22, 0, 16, 0, 4, 0),
+"material": SubResource("StandardMaterial3D_nvmuf"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 24,
+"vertex_data": PackedByteArray(0, 0, 0, 0, 254, 255, 0, 128, 0, 0, 0, 0, 254, 255, 84, 213, 0, 0, 0, 0, 254, 255, 255, 191, 0, 0, 255, 255, 254, 255, 0, 128, 0, 0, 255, 255, 254, 255, 84, 213, 0, 0, 255, 255, 254, 255, 255, 191, 0, 0, 0, 0, 0, 0, 255, 255, 0, 0, 0, 0, 0, 0, 84, 213, 0, 0, 0, 0, 0, 0, 255, 191, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 84, 213, 0, 0, 255, 255, 0, 0, 255, 191, 255, 255, 0, 0, 254, 255, 0, 128, 255, 255, 0, 0, 254, 255, 84, 213, 255, 255, 0, 0, 254, 255, 255, 191, 255, 255, 255, 255, 254, 255, 0, 128, 255, 255, 255, 255, 254, 255, 84, 213, 255, 255, 255, 255, 254, 255, 255, 191, 255, 255, 0, 0, 0, 0, 255, 255, 255, 255, 0, 0, 0, 0, 84, 213, 255, 255, 0, 0, 0, 0, 255, 191, 255, 255, 255, 255, 0, 0, 255, 255, 255, 255, 255, 255, 0, 0, 84, 213, 255, 255, 255, 255, 0, 0, 255, 191, 255, 127, 255, 255, 170, 42, 84, 213, 255, 127, 255, 255, 255, 127, 255, 255, 84, 213, 170, 42, 255, 127, 255, 255, 255, 127, 255, 255, 170, 42, 84, 213, 255, 127, 255, 255, 255, 127, 255, 255, 84, 213, 170, 42, 255, 127, 255, 255, 255, 127, 255, 255, 170, 42, 84, 213, 255, 127, 0, 0, 255, 127, 255, 255, 84, 213, 170, 42, 255, 127, 0, 0, 255, 127, 255, 255, 170, 42, 84, 213, 255, 127, 0, 0, 255, 127, 255, 255, 84, 213, 170, 42, 255, 127, 0, 0)
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_ynb8f")
+
 [node name="Node3D" type="Node3D"]
 
 [node name="Grass" type="MeshInstance3D" parent="."]
@@ -251,4 +293,14 @@ mesh = ExtResource("10_4fj1i")
 collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="GlassPane/StaticBody3D"]
+shape = SubResource("BoxShape3D_mssry")
+
+[node name="Leaves" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, -25)
+mesh = SubResource("ArrayMesh_arpkk")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Leaves"]
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Leaves/StaticBody3D"]
 shape = SubResource("BoxShape3D_mssry")
