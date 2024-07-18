@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://jrgmsu1gncor"]
+[gd_scene load_steps=34 format=3 uid="uid://jrgmsu1gncor"]
 
 [ext_resource type="Texture2D" uid="uid://f4parbh5le6s" path="res://assets/world/mc/stone.png" id="2_84dbg"]
 [ext_resource type="ArrayMesh" uid="uid://copkcxr26jimy" path="res://assets/world/tilemap_cube.tres" id="2_xsknf"]
@@ -13,7 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://c20q4ujd14wja" path="res://assets/world/mc/leaves.png" id="11_xnw3i"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mssry"]
-size = Vector3(2, 2, 0.25)
+size = Vector3(2, 2, 2)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l771g"]
 albedo_texture = ExtResource("2_yws1k")
@@ -153,6 +153,15 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_3xj4k"]
+size = Vector3(2, 1, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_82i4e"]
+size = Vector3(1, 1, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dytni"]
+size = Vector3(2, 2, 0.25)
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nvmuf"]
 transparency = 1
 cull_mode = 2
@@ -273,7 +282,12 @@ mesh = ExtResource("8_mlw4f")
 collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="WoodPlankStair/StaticBody3D"]
-shape = SubResource("BoxShape3D_mssry")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+shape = SubResource("BoxShape3D_3xj4k")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="WoodPlankStair/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0.5, 0)
+shape = SubResource("BoxShape3D_82i4e")
 
 [node name="WoodPlankCornerStair" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, -8)
@@ -293,7 +307,7 @@ mesh = ExtResource("10_4fj1i")
 collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="GlassPane/StaticBody3D"]
-shape = SubResource("BoxShape3D_mssry")
+shape = SubResource("BoxShape3D_dytni")
 
 [node name="Leaves" type="MeshInstance3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, -25)
