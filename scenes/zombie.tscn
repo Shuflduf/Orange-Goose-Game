@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://bnfhhbiconnou" path="res://assets/smoke.png" id="6_n75ba"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7ar7g"]
-size = Vector3(0.288452, 0.299805, 0.230225)
+size = Vector3(0.3, 0.299805, 0.230225)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1h5x2"]
 size = Vector3(2.3, 2.6, 1)
@@ -1121,7 +1121,7 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Sprites/HitBox"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0470581, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0528321, 0, 0)
 shape = SubResource("BoxShape3D_7ar7g")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

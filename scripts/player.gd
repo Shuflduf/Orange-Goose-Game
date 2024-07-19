@@ -32,13 +32,14 @@ var in_water = false
 var health = 0
 var following_player_y = false
 var default_cam_pos: Vector3
+var respawn_point: Vector3
 
 var running = false
 var dead = false
 
 func _ready() -> void:
 	default_cam_pos = camera.position - position
-	
+	respawn_point = global_position
 	health = max_health
 
 
@@ -176,9 +177,13 @@ func take_damage(damage):
 	heal_timer.start()
 func update_health_ui():
 	var health_percent: float = 1 - (float(health) / float(max_health))
-	health_ui.modulate.a = health_percent
+	var tween = get_tree().create_tween()\
+			.set_ease(Tween.EASE_OUT)\
+			.set_trans(Tween.TRANS_SINE)
+	tween.tween_property(health_ui, "modulate:a", health_percent, 0.3)
+	#health_ui.modulate.a = health_percent
 func _on_heal_timer_timeout() -> void:
-	if !sprites.visible:
+	if dead:
 		return
 	var tween = get_tree().create_tween()
 	health = max_health
@@ -196,12 +201,20 @@ func die():
 	await get_tree().create_timer(0.5).timeout
 	
 	sprites.visible = false
-	for child in get_children(true):
-		if child is CollisionShape3D or child is Area3D:
-			print("DEL")
-			child.queue_free()
-		else:
-			continue
+	#for child in get_children(true):
+		#if child is CollisionShape3D or child is Area3D:
+			#child.queue_free()
+		#else:
+			#continue
 	particles.restart()
 	await particles.finished
-	#queue_free()
+	await get_tree().create_timer(0.5).timeout
+	respawn()
+
+func respawn():
+	global_position = respawn_point
+	sprites.visible = true
+	death_offset_lerp = 0
+	health_ui.modulate.a = 0
+	health = max_health
+	dead = false

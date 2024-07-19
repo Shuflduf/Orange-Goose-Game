@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://cmby72mtdbdsg"]
+[gd_scene load_steps=20 format=3 uid="uid://cmby72mtdbdsg"]
 
 [ext_resource type="Texture2D" uid="uid://bwfh42umg77s4" path="res://assets/SkyHDR.hdr" id="1_hcn6c"]
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_qc3yi"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://scripts/water.gd" id="4_480l2"]
 [ext_resource type="Script" path="res://scripts/update_camera.gd" id="4_gax0f"]
 [ext_resource type="MeshLibrary" uid="uid://d300dy0eq4pg1" path="res://resources/tiles.tres" id="5_21y1x"]
+[ext_resource type="Script" path="res://scripts/respawn.gd" id="6_iwfox"]
 [ext_resource type="PackedScene" uid="uid://cyi6fv3re5ax8" path="res://scenes/zombie.tscn" id="6_yiqvi"]
 [ext_resource type="Texture2D" uid="uid://dgypqywotcboj" path="res://assets/backround.png" id="8_gj3d7"]
 
@@ -40,6 +41,9 @@ size = Vector3(71.285, 21.24, 32)
 [sub_resource type="BoxShape3D" id="BoxShape3D_0jvs2"]
 size = Vector3(1, 26.1311, 9.17993)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_3mj02"]
+size = Vector3(1, 5, 1)
+
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_id07t"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wedpr"]
@@ -62,12 +66,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 136.687, 7.41818, 0)
 total_jumps = 1
 default_water_offset = Vector2(-10, 10)
 
-[node name="Obstacles" type="Node3D" parent="."]
+[node name="Features" type="Node3D" parent="."]
 
-[node name="WaterNode" type="Node3D" parent="Obstacles"]
+[node name="WaterNode" type="Node3D" parent="Features"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 0, 0)
 
-[node name="Water" type="Area3D" parent="Obstacles/WaterNode"]
+[node name="Water" type="Area3D" parent="Features/WaterNode"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 0)
 collision_mask = 0
 priority = 1
@@ -77,50 +81,62 @@ gravity_point_center = Vector3(0, 1, 0)
 gravity_direction = Vector3(0, 1, 0)
 script = ExtResource("4_480l2")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/WaterNode/Water"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Features/WaterNode/Water"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.5194, -13.3962, 0)
 shape = SubResource("BoxShape3D_onsn5")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Obstacles/WaterNode"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Features/WaterNode"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23, -13.3, 4.00739)
 material_override = SubResource("StandardMaterial3D_t7i0q")
 mesh = SubResource("BoxMesh_5c4xe")
 
-[node name="MoveCamUp" type="Node3D" parent="Obstacles"]
+[node name="MoveCamUp" type="Node3D" parent="Features"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 105, 3, 0)
 
-[node name="ForestEnter" type="Area3D" parent="Obstacles/MoveCamUp"]
+[node name="ForestEnter" type="Area3D" parent="Features/MoveCamUp"]
 collision_mask = 0
 script = ExtResource("4_gax0f")
 new_camera_offset = 5.0
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/MoveCamUp/ForestEnter"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Features/MoveCamUp/ForestEnter"]
 shape = SubResource("BoxShape3D_0jvs2")
 
-[node name="ForestExit" type="Area3D" parent="Obstacles/MoveCamUp"]
+[node name="ForestExit" type="Area3D" parent="Features/MoveCamUp"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, -3, 0)
 collision_mask = 0
 script = ExtResource("4_gax0f")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/MoveCamUp/ForestExit"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Features/MoveCamUp/ForestExit"]
 shape = SubResource("BoxShape3D_0jvs2")
 
-[node name="CaveEnter" type="Area3D" parent="Obstacles/MoveCamUp"]
+[node name="CaveEnter" type="Area3D" parent="Features/MoveCamUp"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38, 0, 0)
 collision_mask = 0
 script = ExtResource("4_gax0f")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/MoveCamUp/CaveEnter"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Features/MoveCamUp/CaveEnter"]
 shape = SubResource("BoxShape3D_0jvs2")
 
-[node name="CaveExit" type="Area3D" parent="Obstacles/MoveCamUp"]
+[node name="CaveExit" type="Area3D" parent="Features/MoveCamUp"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31, -3, 0)
 collision_mask = 0
 script = ExtResource("4_gax0f")
 new_camera_offset = 5.0
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/MoveCamUp/CaveExit"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Features/MoveCamUp/CaveExit"]
 shape = SubResource("BoxShape3D_0jvs2")
+
+[node name="Respawn" type="Node3D" parent="Features"]
+
+[node name="CaveEntrance" type="Area3D" parent="Features/Respawn"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 115, 6, 0)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("6_iwfox")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Features/Respawn/CaveEntrance"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0)
+shape = SubResource("BoxShape3D_3mj02")
 
 [node name="Enemies" type="Node3D" parent="."]
 
@@ -145,5 +161,6 @@ texture_filter = 2
 render_priority = -128
 texture = ExtResource("8_gj3d7")
 
-[connection signal="body_entered" from="Obstacles/WaterNode/Water" to="Player" method="_on_water_body_entered"]
-[connection signal="body_exited" from="Obstacles/WaterNode/Water" to="Player" method="_on_water_body_exited"]
+[connection signal="body_entered" from="Features/WaterNode/Water" to="Player" method="_on_water_body_entered"]
+[connection signal="body_exited" from="Features/WaterNode/Water" to="Player" method="_on_water_body_exited"]
+[connection signal="body_entered" from="Features/Respawn/CaveEntrance" to="Features/Respawn/CaveEntrance" method="_on_body_entered"]

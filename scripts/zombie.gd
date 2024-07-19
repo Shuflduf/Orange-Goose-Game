@@ -51,7 +51,7 @@ func _physics_process(delta: float) -> void:
 			animation.play("idle")
 		
 		 
-		if global_position.distance_to(target.global_position) < 4:
+		if global_position.distance_to(target.global_position) < 3:
 			attacking = true
 			attack_cooldown.start()
 			animation.play("LONG_RESET", 0)
