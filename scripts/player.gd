@@ -17,10 +17,12 @@ extends CharacterBody3D
 @export_category("Camera Offsets")
 @export var default_water_offset = Vector2(0, 10)
 @export var default_ahead_offset = 4
+@export var death_offset = Vector3(0, 0, 4)
 
 var ahead_offset: float
 var water_offset: Vector2 # Y and Z
 var world_offset = 0.0
+var death_offset_lerp = 0.0
 
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 var gravity_mult = 1.5
@@ -32,6 +34,7 @@ var following_player_y = false
 var default_cam_pos: Vector3
 
 var running = false
+var dead = false
 
 func _ready() -> void:
 	default_cam_pos = camera.position - position
@@ -40,9 +43,17 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	
+	camera.position = lerp(camera.position, death_offset + position, death_offset_lerp)
+	
+	if dead:
+		return
+	
 	camera.position.x = default_cam_pos.x + position.x + ahead_offset
 	camera.position.z = default_cam_pos.z + water_offset.y
 	camera.position.y = default_cam_pos.y + water_offset.x + world_offset
+	
+	
 	
 	if is_on_floor() and !in_water:
 		jumps = total_jumps
@@ -175,6 +186,15 @@ func _on_heal_timer_timeout() -> void:
 
 
 func die():
+	dead = true
+	var tween = get_tree().create_tween()\
+			.set_ease(Tween.EASE_IN_OUT)\
+			.set_trans(Tween.TRANS_SINE)
+	tween.tween_property(self, "death_offset_lerp", 1, 1.4)
+	await tween.finished
+	
+	await get_tree().create_timer(0.5).timeout
+	
 	sprites.visible = false
 	for child in get_children(true):
 		if child is CollisionShape3D or child is Area3D:
