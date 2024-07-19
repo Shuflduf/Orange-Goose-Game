@@ -136,3 +136,12 @@ func tween_world_offset(final: float):
 			.set_ease(Tween.EASE_IN_OUT)\
 			.set_trans(Tween.TRANS_SINE)
 	tween.tween_property(self, "world_offset", final, 0.5)
+
+
+func _on_area_3d_body_entered(body: Node3D) -> void:
+	
+	if body is Zombie:
+		if velocity.y < 0:
+			
+			body.queue_free()
+			velocity.y = jump_height

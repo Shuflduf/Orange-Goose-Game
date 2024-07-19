@@ -1,3 +1,4 @@
+class_name Zombie
 extends CharacterBody3D
 
 @onready var animation: AnimationPlayer = $AnimationPlayer
@@ -35,21 +36,28 @@ func _physics_process(delta: float) -> void:
 	if attacking:
 		return
 	
-	if target != null: 
-		if global_position.distance_to(target.global_position) < 4:
-			print("AH")
-			animation.play("RESET", 0)
-			animation.queue("attack")
-			animation.queue("idle")
-			attacking = true
-			attack_cooldown.start()
-			return
-			
+	if target != null:
 		var move_dir = global_position.direction_to(target.global_position)
 		move_dir *= Vector3.RIGHT
 		move_dir = move_dir.normalized()
 		sprites.scale.x = -8 * move_dir.x
+		 
+		if global_position.distance_to(target.global_position) < 4:
+			attacking = true
+			attack_cooldown.start()
+			animation.play("LONG_RESET", 0)
+			await animation.animation_finished
+			animation.play("attack", 0)
+			
+			
+			await animation.animation_finished
+			animation.play("idle")
+			
+			return
+			
+		
 		velocity.x = move_dir.x * speed
+		animation.play("walk")
 	
 	move_and_slide()
 
