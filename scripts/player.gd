@@ -149,7 +149,7 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 	if body is Zombie:
 		if velocity.y < -1:
 			
-			body.queue_free()
+			body.die()
 			velocity.y = jump_height / 2
 
 

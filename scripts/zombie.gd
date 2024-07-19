@@ -5,6 +5,8 @@ extends CharacterBody3D
 @onready var sprites: Node3D = $Sprites
 @onready var attack_cooldown: Timer = $AttackCooldown
 @onready var hitbox: Area3D = $Sprites/HitBox
+@onready var collision: CollisionShape3D = $CollisionShape3D
+@onready var particles: GPUParticles3D = $GPUParticles3D
 
 @export var speed = 5.0
 
@@ -72,10 +74,19 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 
-#func _on_animation_player_animation_finished(anim_name: StringName) -> void:
-	#if anim_name == "attack":
-		#attacking = false
-		#animation.play("idle")
+func die():
+	sprites.visible = false
+	for child in get_children(true):
+		if child is CollisionShape3D or child is Area3D:
+			print("DEL")
+			#child.disabled = true
+			child.queue_free()
+			#child.disable
+		else:
+			continue
+	particles.restart()
+	await particles.finished
+	queue_free()
 
 
 func _on_attack_cooldown_timeout() -> void:
