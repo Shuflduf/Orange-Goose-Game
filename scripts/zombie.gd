@@ -39,11 +39,15 @@ func _physics_process(delta: float) -> void:
 	if target != null:
 		var move_dir = global_position.direction_to(target.global_position)
 		move_dir *= Vector3.RIGHT
-		if move_dir.length_squared() < 1:
+		var temp = abs(global_position.x - target.global_position.x)
+		print(temp)
+		if temp > 1.0:
 			move_dir = move_dir.normalized()
+			sprites.scale.x = -8 * move_dir.x
 		else:
 			move_dir = Vector2.ZERO
-		sprites.scale.x = -8 * move_dir.x
+			animation.play("idle")
+		
 		 
 		if global_position.distance_to(target.global_position) < 4:
 			attacking = true
