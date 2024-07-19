@@ -141,7 +141,7 @@ func tween_world_offset(final: float):
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	
 	if body is Zombie:
-		if velocity.y < 0:
+		if velocity.y < -1:
 			
 			body.queue_free()
-			velocity.y = jump_height
+			velocity.y = jump_height / 2

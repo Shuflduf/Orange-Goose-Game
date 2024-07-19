@@ -39,7 +39,10 @@ func _physics_process(delta: float) -> void:
 	if target != null:
 		var move_dir = global_position.direction_to(target.global_position)
 		move_dir *= Vector3.RIGHT
-		move_dir = move_dir.normalized()
+		if move_dir.length_squared() < 1:
+			move_dir = move_dir.normalized()
+		else:
+			move_dir = Vector2.ZERO
 		sprites.scale.x = -8 * move_dir.x
 		 
 		if global_position.distance_to(target.global_position) < 4:
