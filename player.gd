@@ -105,7 +105,7 @@ func _on_area_3d_area_entered(area: Area3D) -> void:
 		gravity = -ProjectSettings.get_setting("physics/3d/default_gravity") * area.gravity_mult
 	
 	if area is CameraUpdater:
-		world_offset = area.new_camera_offset
+		tween_world_offset(area.new_camera_offset)
 
 func _on_area_3d_area_exited(area: Area3D) -> void:
 	if area is Water:
@@ -131,3 +131,8 @@ func flip_sprites(dir: bool):
 	sprites.scale.x = 8 * offset
 
 
+func tween_world_offset(final: float):
+	var tween = get_tree().create_tween()\
+			.set_ease(Tween.EASE_IN_OUT)\
+			.set_trans(Tween.TRANS_SINE)
+	tween.tween_property(self, "world_offset", final, 0.5)

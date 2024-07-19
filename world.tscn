@@ -83,7 +83,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 105, 3, 0)
 [node name="Area3D" type="Area3D" parent="Obstacles/MoveCamUp"]
 collision_mask = 0
 script = ExtResource("4_gax0f")
-new_camera_offset = 10.0
+new_camera_offset = 5.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/MoveCamUp/Area3D"]
 shape = SubResource("BoxShape3D_0jvs2")
