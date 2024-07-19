@@ -1,5 +1,8 @@
 extends CharacterBody3D
 
+@onready var animation: AnimationPlayer = $AnimationPlayer
+@onready var sprites: Node3D = $Sprites
+
 @export var speed = 5.0
 
 var target: Player
@@ -17,6 +20,7 @@ func _on_player_detect_body_exited(body: Node3D) -> void:
 	if body is Player:
 		target = null
 		print("lost")
+		animation.play("idle")
 	
 	
 func _physics_process(delta: float) -> void:
@@ -29,16 +33,12 @@ func _physics_process(delta: float) -> void:
 		move_dir = global_position.direction_to(target.global_position)
 		move_dir *= Vector3.RIGHT
 		move_dir = move_dir.normalized()
+		var dir = 1 if velocity.x < 0 else -1
+		sprites.scale.x = 8 * dir
+		
 	velocity.x = move_dir.x * speed
 	
-	#var input_dir := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
-	#var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	#if direction:
-		#velocity.x = direction.x * SPEED
-		#velocity.z = direction.z * SPEED
-	#else:
-		#velocity.x = move_toward(velocity.x, 0, SPEED)
-		#velocity.z = move_toward(velocity.z, 0, SPEED)
+	
 
 	move_and_slide()
 
