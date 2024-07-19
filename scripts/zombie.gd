@@ -27,19 +27,20 @@ func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y -= gravity * delta * gravity_mult
-
+	
+	velocity = Vector3.ZERO
 	var move_dir = Vector3.ZERO
 	if target != null:
 		move_dir = global_position.direction_to(target.global_position)
 		move_dir *= Vector3.RIGHT
 		move_dir = move_dir.normalized()
-		var dir = 1 if velocity.x < 0 else -1
+		velocity.x = move_dir.x * speed
+		var dir = 1 if move_dir.x < 0 else -1
 		sprites.scale.x = 8 * dir
 		
-	velocity.x = move_dir.x * speed
 	
 	
-
+	
 	move_and_slide()
 
 
