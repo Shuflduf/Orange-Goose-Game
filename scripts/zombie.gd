@@ -20,13 +20,11 @@ var attacking = false
 func _on_player_detect_body_entered(body: Node3D) -> void:
 	if body is Player:
 		target = body
-		print("found")
 		
 		
 func _on_player_detect_body_exited(body: Node3D) -> void:
 	if body is Player:
 		target = null
-		print("lost")
 		animation.play("idle")
 	
 	
@@ -80,7 +78,6 @@ func die():
 	sprites.visible = false
 	for child in get_children(true):
 		if child is CollisionShape3D or child is Area3D:
-			print("DEL")
 			child.queue_free()
 		else:
 			continue

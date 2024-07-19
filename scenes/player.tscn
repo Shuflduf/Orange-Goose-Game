@@ -893,6 +893,7 @@ playback_default_blend_time = 0.5
 speed_scale = 2.0
 
 [node name="HealTimer" type="Timer" parent="."]
+process_callback = 0
 wait_time = 3.0
 
 [node name="HealthUI" parent="." instance=ExtResource("6_dgv7y")]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://cmby72mtdbdsg"]
+[gd_scene load_steps=36 format=3 uid="uid://cmby72mtdbdsg"]
 
 [ext_resource type="Texture2D" uid="uid://bwfh42umg77s4" path="res://assets/SkyHDR.hdr" id="1_hcn6c"]
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_qc3yi"]
@@ -9,7 +9,6 @@
 [ext_resource type="Script" path="res://scripts/respawn.gd" id="6_iwfox"]
 [ext_resource type="PackedScene" uid="uid://cyi6fv3re5ax8" path="res://scenes/zombie.tscn" id="6_yiqvi"]
 [ext_resource type="Texture2D" uid="uid://dgypqywotcboj" path="res://assets/backround.png" id="8_gj3d7"]
-[ext_resource type="Script" path="res://scripts/zombie.gd" id="8_tout0"]
 [ext_resource type="Texture2D" uid="uid://2jt2ligy4rhb" path="res://assets/goose/zombie/zgoose_body.png" id="9_lbush"]
 [ext_resource type="Texture2D" uid="uid://c8lfkyyxxl03w" path="res://assets/goose/zombie/zgoose_foot_l.png" id="10_811yq"]
 [ext_resource type="Texture2D" uid="uid://ov3tm784lju1" path="res://assets/goose/zombie/zgoose_eye.png" id="11_i3n84"]
@@ -1166,12 +1165,8 @@ shape = SubResource("BoxShape3D_3mj02")
 [node name="Zombie" parent="Enemies" instance=ExtResource("6_yiqvi")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 159.532, 0.162051, 0)
 
-[node name="ZombieDecoy1" type="CharacterBody3D" parent="Enemies" groups=["Enemy"]]
+[node name="ZombieDecoy1" type="Node3D" parent="Enemies"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 159.718, 3.36205, -22)
-collision_layer = 4
-collision_mask = 7
-script = ExtResource("8_tout0")
-speed = 3.0
 
 [node name="Sprites" type="Node3D" parent="Enemies/ZombieDecoy1"]
 transform = Transform3D(-8, 0, 0, 0, 8, 0, 0, 0, 8, 0, 0, 0)
@@ -1201,14 +1196,14 @@ texture_filter = 0
 texture = ExtResource("10_811yq")
 
 [node name="Eye" type="Sprite3D" parent="Enemies/ZombieDecoy1/Sprites"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0112144, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.00674906, 0)
 sorting_offset = 1.0
 alpha_cut = 2
 texture_filter = 0
 texture = ExtResource("11_i3n84")
 
 [node name="Beak" type="Sprite3D" parent="Enemies/ZombieDecoy1/Sprites"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0112144, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.00674906, 0)
 sorting_offset = 0.5
 alpha_cut = 2
 texture_filter = 0

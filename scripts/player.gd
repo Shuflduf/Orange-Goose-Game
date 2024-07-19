@@ -38,6 +38,7 @@ var running = false
 var dead = false
 
 func _ready() -> void:
+	EnemyManager.save_all_enemies()
 	default_cam_pos = camera.position - position
 	respawn_point = global_position
 	health = max_health
@@ -212,6 +213,7 @@ func die():
 	respawn()
 
 func respawn():
+	EnemyManager.load_all_enemies()
 	global_position = respawn_point
 	sprites.visible = true
 	death_offset_lerp = 0
