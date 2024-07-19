@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://p3wddy5561vo"
-path="res://.godot/imported/goose_body.png-e4705a0bf7d15c9cf41bd53bfaa91e66.ctex"
+uid="uid://dt6tbaimoqbe6"
+path="res://.godot/imported/zgoose_beak.png-d1a62cd9112d3544634bb539b23af477.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/goose/goose_body.png"
-dest_files=["res://.godot/imported/goose_body.png-e4705a0bf7d15c9cf41bd53bfaa91e66.ctex"]
+source_file="res://assets/goose/zombie/zgoose_beak.png"
+dest_files=["res://.godot/imported/zgoose_beak.png-d1a62cd9112d3544634bb539b23af477.ctex"]
 
 [params]
 

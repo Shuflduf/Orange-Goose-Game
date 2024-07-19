@@ -1,10 +1,9 @@
-[gd_scene load_steps=16 format=3 uid="uid://b88gw4ibis1fy"]
+[gd_scene load_steps=15 format=3 uid="uid://cyi6fv3re5ax8"]
 
-[ext_resource type="Script" path="res://player.gd" id="1_52rpn"]
-[ext_resource type="Texture2D" uid="uid://p3wddy5561vo" path="res://assets/goose/normal/goose_body.png" id="2_t8001"]
-[ext_resource type="Texture2D" uid="uid://dcng0qc8hff2" path="res://assets/goose/normal/goose_foot_l.png" id="3_pyaoh"]
-[ext_resource type="Texture2D" uid="uid://cb7ed8huqn6rr" path="res://assets/goose/normal/goose_eye.png" id="4_tqy23"]
-[ext_resource type="Texture2D" uid="uid://cva38uhbtx7kj" path="res://assets/goose/normal/goose_beak.png" id="5_7njpg"]
+[ext_resource type="Texture2D" uid="uid://2jt2ligy4rhb" path="res://assets/goose/zombie/zgoose_body.png" id="1_kodl8"]
+[ext_resource type="Texture2D" uid="uid://c8lfkyyxxl03w" path="res://assets/goose/zombie/zgoose_foot_l.png" id="2_gr6do"]
+[ext_resource type="Texture2D" uid="uid://ov3tm784lju1" path="res://assets/goose/zombie/zgoose_eye.png" id="3_kckyi"]
+[ext_resource type="Texture2D" uid="uid://dt6tbaimoqbe6" path="res://assets/goose/zombie/zgoose_beak.png" id="4_rhfc5"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jja6d"]
 size = Vector3(2.3, 2.6, 1)
@@ -782,9 +781,8 @@ _data = {
 "walk": SubResource("Animation_aqyii")
 }
 
-[node name="Player" type="CharacterBody3D"]
+[node name="Zombie" type="CharacterBody3D"]
 collision_layer = 2
-script = ExtResource("1_52rpn")
 
 [node name="Sprites" type="Node3D" parent="."]
 transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, 0, 0, 0)
@@ -792,7 +790,7 @@ transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, 0, 0, 0)
 [node name="Body" type="Sprite3D" parent="Sprites"]
 alpha_cut = 2
 texture_filter = 0
-texture = ExtResource("2_t8001")
+texture = ExtResource("1_kodl8")
 
 [node name="RemoteTransform3D" type="RemoteTransform3D" parent="Sprites/Body"]
 remote_path = NodePath("../../Eye")
@@ -804,39 +802,30 @@ remote_path = NodePath("../../Beak")
 sorting_offset = -1.0
 alpha_cut = 2
 texture_filter = 0
-texture = ExtResource("3_pyaoh")
+texture = ExtResource("2_gr6do")
 
 [node name="RightFoot" type="Sprite3D" parent="Sprites"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.11, 0, 0)
 sorting_offset = -0.9
 alpha_cut = 2
 texture_filter = 0
-texture = ExtResource("3_pyaoh")
+texture = ExtResource("2_gr6do")
 
 [node name="Eye" type="Sprite3D" parent="Sprites"]
+transform = Transform3D(0.999826, -0.0186347, 0, 0.0186347, 0.999826, 0, 0, 0, 1, 0, -0.00570606, 0)
 sorting_offset = 1.0
 alpha_cut = 2
 texture_filter = 0
-texture = ExtResource("4_tqy23")
+texture = ExtResource("3_kckyi")
 
 [node name="Beak" type="Sprite3D" parent="Sprites"]
+transform = Transform3D(0.999826, -0.0186347, 0, 0.0186347, 0.999826, 0, 0, 0, 1, 0, -0.00570606, 0)
 sorting_offset = 0.5
 alpha_cut = 2
 texture_filter = 0
-texture = ExtResource("5_7njpg")
-
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 14)
-top_level = true
+texture = ExtResource("4_rhfc5")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0500001, 1.19209e-07, 0)
-shape = SubResource("BoxShape3D_jja6d")
-
-[node name="Area3D" type="Area3D" parent="."]
-collision_layer = 0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0500001, 1.19209e-07, 0)
 shape = SubResource("BoxShape3D_jja6d")
 
@@ -846,8 +835,5 @@ libraries = {
 }
 autoplay = "idle"
 playback_default_blend_time = 0.5
-speed_scale = 2.0
 
-[connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]
-[connection signal="area_exited" from="Area3D" to="." method="_on_area_3d_area_exited"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
