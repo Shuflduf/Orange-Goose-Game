@@ -1,10 +1,13 @@
-[gd_scene load_steps=19 format=3 uid="uid://cyi6fv3re5ax8"]
+[gd_scene load_steps=20 format=3 uid="uid://cyi6fv3re5ax8"]
 
 [ext_resource type="Script" path="res://scripts/zombie.gd" id="1_hpuox"]
 [ext_resource type="Texture2D" uid="uid://2jt2ligy4rhb" path="res://assets/goose/zombie/zgoose_body.png" id="2_cs1kq"]
 [ext_resource type="Texture2D" uid="uid://c8lfkyyxxl03w" path="res://assets/goose/zombie/zgoose_foot_l.png" id="3_u3yq5"]
 [ext_resource type="Texture2D" uid="uid://ov3tm784lju1" path="res://assets/goose/zombie/zgoose_eye.png" id="4_5yxy6"]
 [ext_resource type="Texture2D" uid="uid://dt6tbaimoqbe6" path="res://assets/goose/zombie/zgoose_beak.png" id="5_mbnro"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7ar7g"]
+size = Vector3(0.288452, 0.299805, 0.230225)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1h5x2"]
 size = Vector3(2.3, 2.6, 1)
@@ -1073,6 +1076,15 @@ sorting_offset = 0.5
 alpha_cut = 2
 texture_filter = 0
 texture = ExtResource("5_mbnro")
+
+[node name="HitBox" type="Area3D" parent="Sprites"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.125, 0, 0)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Sprites/HitBox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0470581, 0, 0)
+shape = SubResource("BoxShape3D_7ar7g")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0500001, 1.19209e-07, 0)

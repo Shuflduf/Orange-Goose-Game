@@ -4,11 +4,14 @@ extends CharacterBody3D
 @onready var camera: Camera3D = $Camera3D
 @onready var sprites: Node3D = $Sprites
 @onready var animation: AnimationPlayer = $AnimationPlayer
+@onready var health_ui: Panel = $HealthUI
+@onready var heal_timer: Timer = $HealTimer
 
 @export var speed = 5.0
 @export var running_speed = 8.0
 @export var jump_height = 11.0
 @export var total_jumps = 2
+@export var max_health = 3
 
 @export_category("Camera Offsets")
 @export var default_water_offset = Vector2(0, 10)
@@ -23,6 +26,7 @@ var gravity_mult = 1.5
 var jumps = total_jumps
 var weight_mult = 1
 var in_water = false
+var health = 0
 var following_player_y = false
 var default_cam_pos: Vector3
 
@@ -30,6 +34,8 @@ var running = false
 
 func _ready() -> void:
 	default_cam_pos = camera.position - position
+	
+	health = max_health
 
 
 func _physics_process(delta: float) -> void:
@@ -107,6 +113,7 @@ func _on_area_3d_area_entered(area: Area3D) -> void:
 	if area is CameraUpdater:
 		tween_world_offset(area.new_camera_offset)
 
+
 func _on_area_3d_area_exited(area: Area3D) -> void:
 	if area is Water:
 		sprites.rotation.z = 0
@@ -139,9 +146,20 @@ func tween_world_offset(final: float):
 
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
-	
 	if body is Zombie:
 		if velocity.y < -1:
 			
 			body.queue_free()
 			velocity.y = jump_height / 2
+
+
+func take_damage(damage):
+	health -= damage
+	update_health_ui()
+	heal_timer.start()
+
+func update_health_ui():
+	var health_percent: float = 1 - (float(health) / float(max_health))
+
+	print(health_percent)
+	health_ui.modulate.a = health_percent

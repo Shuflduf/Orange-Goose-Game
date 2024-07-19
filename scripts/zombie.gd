@@ -4,6 +4,7 @@ extends CharacterBody3D
 @onready var animation: AnimationPlayer = $AnimationPlayer
 @onready var sprites: Node3D = $Sprites
 @onready var attack_cooldown: Timer = $AttackCooldown
+@onready var hitbox: Area3D = $Sprites/HitBox
 
 @export var speed = 5.0
 
@@ -39,9 +40,8 @@ func _physics_process(delta: float) -> void:
 	if target != null:
 		var move_dir = global_position.direction_to(target.global_position)
 		move_dir *= Vector3.RIGHT
-		var temp = abs(global_position.x - target.global_position.x)
-		print(temp)
-		if temp > 1.0:
+		var d = abs(global_position.x - target.global_position.x)
+		if d > 1.0:
 			move_dir = move_dir.normalized()
 			sprites.scale.x = -8 * move_dir.x
 		else:
@@ -57,7 +57,10 @@ func _physics_process(delta: float) -> void:
 			animation.play("attack", 0)
 			
 			
-			await animation.animation_finished
+			await animation.animation_finished 
+			for i in hitbox.get_overlapping_bodies():
+				if i is Player:
+					i.take_damage(1)
 			animation.play("idle")
 			
 			return

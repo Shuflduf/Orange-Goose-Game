@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=3 uid="uid://dqkuja7p25wcy"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j55b5"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 60
+border_width_top = 60
+border_width_right = 60
+border_width_bottom = 60
+border_color = Color(0.8, 0, 0, 1)
+border_blend = true
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+shadow_color = Color(1, 0, 0, 0.0862745)
+shadow_size = 20
+
+[node name="Panel" type="Panel"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_j55b5")

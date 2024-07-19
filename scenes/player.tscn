@@ -1,10 +1,11 @@
-[gd_scene load_steps=17 format=3 uid="uid://b88gw4ibis1fy"]
+[gd_scene load_steps=18 format=3 uid="uid://b88gw4ibis1fy"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_52rpn"]
 [ext_resource type="Texture2D" uid="uid://p3wddy5561vo" path="res://assets/goose/normal/goose_body.png" id="2_t8001"]
 [ext_resource type="Texture2D" uid="uid://dcng0qc8hff2" path="res://assets/goose/normal/goose_foot_l.png" id="3_pyaoh"]
 [ext_resource type="Texture2D" uid="uid://cb7ed8huqn6rr" path="res://assets/goose/normal/goose_eye.png" id="4_tqy23"]
 [ext_resource type="Texture2D" uid="uid://cva38uhbtx7kj" path="res://assets/goose/normal/goose_beak.png" id="5_7njpg"]
+[ext_resource type="PackedScene" uid="uid://dqkuja7p25wcy" path="res://scenes/health_overlay.tscn" id="6_dgv7y"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_j5yi2"]
 size = Vector3(2.3, 2.6, 1)
@@ -852,6 +853,12 @@ libraries = {
 autoplay = "idle"
 playback_default_blend_time = 0.5
 speed_scale = 2.0
+
+[node name="HealTimer" type="Timer" parent="."]
+wait_time = 3.0
+
+[node name="HealthUI" parent="." instance=ExtResource("6_dgv7y")]
+modulate = Color(1, 1, 1, 0)
 
 [connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]
 [connection signal="area_exited" from="Area3D" to="." method="_on_area_3d_area_exited"]
