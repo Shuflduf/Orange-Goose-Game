@@ -160,6 +160,10 @@ func take_damage(damage):
 
 func update_health_ui():
 	var health_percent: float = 1 - (float(health) / float(max_health))
-
-	print(health_percent)
 	health_ui.modulate.a = health_percent
+
+
+func _on_heal_timer_timeout() -> void:
+	var tween = get_tree().create_tween()
+	health = max_health
+	tween.tween_property(self, "health_ui:modulate:a", 0.0, 1)
