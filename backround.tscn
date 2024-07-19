@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://cfsulb0stvg40"]
+
+[ext_resource type="Shader" path="res://basic_offset.gdshader" id="1_gfcpl"]
+[ext_resource type="Texture2D" uid="uid://dgypqywotcboj" path="res://assets/backround.png" id="1_yw3hi"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dbkda"]
+shader = ExtResource("1_gfcpl")
+shader_parameter/offset = -17.225
+
+[node name="Backround" type="CanvasLayer"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_dbkda")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_yw3hi")

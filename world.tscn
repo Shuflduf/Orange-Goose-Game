@@ -1,10 +1,11 @@
-[gd_scene load_steps=14 format=3 uid="uid://cmby72mtdbdsg"]
+[gd_scene load_steps=15 format=3 uid="uid://cmby72mtdbdsg"]
 
 [ext_resource type="Texture2D" uid="uid://bwfh42umg77s4" path="res://assets/SkyHDR.hdr" id="1_hcn6c"]
 [ext_resource type="PackedScene" uid="uid://b88gw4ibis1fy" path="res://player.tscn" id="3_5b2j6"]
 [ext_resource type="Script" path="res://scripts/water.gd" id="4_480l2"]
 [ext_resource type="Script" path="res://scripts/update_camera.gd" id="4_gax0f"]
 [ext_resource type="MeshLibrary" uid="uid://d300dy0eq4pg1" path="res://resources/tiles.tres" id="5_21y1x"]
+[ext_resource type="PackedScene" uid="uid://cfsulb0stvg40" path="res://backround.tscn" id="6_uw8x4"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_ysluh"]
 panorama = ExtResource("1_hcn6c")
@@ -40,6 +41,9 @@ size = Vector3(1, 26.1311, 9.17993)
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_id07t"]
 
 [node name="Node3D" type="Node3D"]
+
+[node name="Backround" parent="." instance=ExtResource("6_uw8x4")]
+layer = -128
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_c7kd5")
