@@ -39,7 +39,7 @@ func _physics_process(delta: float) -> void:
 	if attacking:
 		return
 	
-	if target != null:
+	if target != null and !target.dead:
 		var move_dir = global_position.direction_to(target.global_position)
 		move_dir *= Vector3.RIGHT
 		var d = abs(global_position.x - target.global_position.x)
@@ -63,8 +63,8 @@ func _physics_process(delta: float) -> void:
 			for i in hitbox.get_overlapping_bodies():
 				if i is Player:
 					i.take_damage(1)
-					if i.health <= 0:
-						target = null
+					#if i.health <= 0:
+						#target = null
 			animation.play("idle")
 			
 			return

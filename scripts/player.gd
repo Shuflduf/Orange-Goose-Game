@@ -45,6 +45,10 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	
+	if position.y < -30:
+		respawn()
+		return
+	
 	camera.position = lerp(camera.position, death_offset + position, death_offset_lerp)
 	
 	if dead:
