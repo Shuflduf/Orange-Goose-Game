@@ -1,6 +1,6 @@
 [gd_scene load_steps=16 format=3 uid="uid://b88gw4ibis1fy"]
 
-[ext_resource type="Script" path="res://player.gd" id="1_52rpn"]
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_52rpn"]
 [ext_resource type="Texture2D" uid="uid://p3wddy5561vo" path="res://assets/goose/normal/goose_body.png" id="2_t8001"]
 [ext_resource type="Texture2D" uid="uid://dcng0qc8hff2" path="res://assets/goose/normal/goose_foot_l.png" id="3_pyaoh"]
 [ext_resource type="Texture2D" uid="uid://cb7ed8huqn6rr" path="res://assets/goose/normal/goose_eye.png" id="4_tqy23"]

@@ -1,11 +1,12 @@
-[gd_scene load_steps=17 format=3 uid="uid://cmby72mtdbdsg"]
+[gd_scene load_steps=18 format=3 uid="uid://cmby72mtdbdsg"]
 
 [ext_resource type="Texture2D" uid="uid://bwfh42umg77s4" path="res://assets/SkyHDR.hdr" id="1_hcn6c"]
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_qc3yi"]
-[ext_resource type="PackedScene" uid="uid://b88gw4ibis1fy" path="res://player.tscn" id="3_5b2j6"]
+[ext_resource type="PackedScene" uid="uid://b88gw4ibis1fy" path="res://scenes/player.tscn" id="3_5b2j6"]
 [ext_resource type="Script" path="res://scripts/water.gd" id="4_480l2"]
 [ext_resource type="Script" path="res://scripts/update_camera.gd" id="4_gax0f"]
 [ext_resource type="MeshLibrary" uid="uid://d300dy0eq4pg1" path="res://resources/tiles.tres" id="5_21y1x"]
+[ext_resource type="PackedScene" uid="uid://cyi6fv3re5ax8" path="res://scenes/zombie.tscn" id="6_yiqvi"]
 [ext_resource type="Texture2D" uid="uid://dgypqywotcboj" path="res://assets/backround.png" id="8_gj3d7"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_ysluh"]
@@ -121,6 +122,11 @@ new_camera_offset = 5.0
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/MoveCamUp/CaveExit"]
 shape = SubResource("BoxShape3D_0jvs2")
 
+[node name="Enemies" type="Node3D" parent="."]
+
+[node name="Zombie" parent="Enemies" instance=ExtResource("6_yiqvi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 152.201, 0.162051, 0)
+
 [node name="GridMap" type="GridMap" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
 mesh_library = ExtResource("5_21y1x")
@@ -141,5 +147,3 @@ texture = ExtResource("8_gj3d7")
 
 [connection signal="body_entered" from="Obstacles/WaterNode/Water" to="Player" method="_on_water_body_entered"]
 [connection signal="body_exited" from="Obstacles/WaterNode/Water" to="Player" method="_on_water_body_exited"]
-
-[editable path="Player"]
