@@ -787,7 +787,8 @@ height = 1.0
 radius = 14.3943
 
 [node name="Zombie" type="CharacterBody3D"]
-collision_layer = 2
+collision_layer = 4
+collision_mask = 7
 script = ExtResource("1_hpuox")
 
 [node name="Sprites" type="Node3D" parent="."]
@@ -818,14 +819,14 @@ texture_filter = 0
 texture = ExtResource("3_u3yq5")
 
 [node name="Eye" type="Sprite3D" parent="Sprites"]
-transform = Transform3D(0.998902, -0.0468572, 0, 0.0468572, 0.998902, 0, 0, 0, 1, 0, -0.0143524, 0)
+transform = Transform3D(0.998921, -0.0464502, 0, 0.0464502, 0.998921, 0, 0, 0, 1, 0, -0.0142276, 0)
 sorting_offset = 1.0
 alpha_cut = 2
 texture_filter = 0
 texture = ExtResource("4_5yxy6")
 
 [node name="Beak" type="Sprite3D" parent="Sprites"]
-transform = Transform3D(0.998902, -0.0468572, 0, 0.0468572, 0.998902, 0, 0, 0, 1, 0, -0.0143524, 0)
+transform = Transform3D(0.998921, -0.0464502, 0, 0.0464502, 0.998921, 0, 0, 0, 1, 0, -0.0142276, 0)
 sorting_offset = 0.5
 alpha_cut = 2
 texture_filter = 0
