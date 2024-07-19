@@ -158,7 +158,7 @@ func take_damage(damage):
 	health -= damage
 	update_health_ui()
 	
-	if health >= 0:
+	if health <= 0:
 		die()
 		return
 	
@@ -167,6 +167,8 @@ func update_health_ui():
 	var health_percent: float = 1 - (float(health) / float(max_health))
 	health_ui.modulate.a = health_percent
 func _on_heal_timer_timeout() -> void:
+	if !sprites.visible:
+		return
 	var tween = get_tree().create_tween()
 	health = max_health
 	tween.tween_property(self, "health_ui:modulate:a", 0.0, 1)
