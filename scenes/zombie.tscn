@@ -1,10 +1,11 @@
-[gd_scene load_steps=24 format=3 uid="uid://cyi6fv3re5ax8"]
+[gd_scene load_steps=26 format=3 uid="uid://cyi6fv3re5ax8"]
 
 [ext_resource type="Script" path="res://scripts/zombie.gd" id="1_hpuox"]
 [ext_resource type="Texture2D" uid="uid://2jt2ligy4rhb" path="res://assets/goose/zombie/zgoose_body.png" id="2_cs1kq"]
 [ext_resource type="Texture2D" uid="uid://c8lfkyyxxl03w" path="res://assets/goose/zombie/zgoose_foot_l.png" id="3_u3yq5"]
 [ext_resource type="Texture2D" uid="uid://ov3tm784lju1" path="res://assets/goose/zombie/zgoose_eye.png" id="4_5yxy6"]
 [ext_resource type="Texture2D" uid="uid://dt6tbaimoqbe6" path="res://assets/goose/zombie/zgoose_beak.png" id="5_mbnro"]
+[ext_resource type="Texture2D" uid="uid://bnfhhbiconnou" path="res://assets/smoke.png" id="6_n75ba"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7ar7g"]
 size = Vector3(0.288452, 0.299805, 0.230225)
@@ -1033,20 +1034,23 @@ height = 1.0
 radius = 14.3943
 
 [sub_resource type="Curve" id="Curve_y75yo"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.630901, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 3
+max_value = 2.0
+_data = [Vector2(0, 2), 0.0, 0.0, 0, 0, Vector2(0.377682, 1.01099), -3.37229, -3.37229, 0, 0, Vector2(0.643777, 0.725275), -1.38402, -1.38402, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
 
 [sub_resource type="CurveTexture" id="CurveTexture_63hlf"]
 curve = SubResource("Curve_y75yo")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_dc3l0"]
+lifetime_randomness = 0.38
 particle_flag_rotate_y = true
 emission_shape_offset = Vector3(0, -0.315, 0)
 emission_shape = 3
-emission_box_extents = Vector3(1.5, 1, 0.5)
+emission_box_extents = Vector3(0.5, 1, 0.5)
 angle_min = -15.0
 angle_max = 15.0
 direction = Vector3(0, 1, 0)
+spread = 132.231
 initial_velocity_max = 2.0
 gravity = Vector3(0, 3, 0)
 damping_max = 1.538
@@ -1054,7 +1058,17 @@ scale_min = 0.7
 scale_max = 1.3
 scale_curve = SubResource("CurveTexture_63hlf")
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7s3lr"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("6_n75ba")
+texture_filter = 2
+
 [sub_resource type="QuadMesh" id="QuadMesh_7pn6o"]
+material = SubResource("StandardMaterial3D_7s3lr")
 
 [node name="Zombie" type="CharacterBody3D"]
 collision_layer = 4
@@ -1133,10 +1147,12 @@ wait_time = 2.0
 one_shot = true
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
-amount = 32
+amount = 64
+lifetime = 1.5
 explosiveness = 1.0
 randomness = 0.41
 fixed_fps = 60
+visibility_aabb = AABB(-3.65761, -2.29458, -2.44494, 6.91928, 7.81257, 5.22592)
 process_material = SubResource("ParticleProcessMaterial_dc3l0")
 draw_pass_1 = SubResource("QuadMesh_7pn6o")
 
