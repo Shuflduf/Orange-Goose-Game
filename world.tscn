@@ -47,6 +47,7 @@ texture_filter = 2
 
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_qc3yi")
+parallax_effect = 0.3
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_c7kd5")

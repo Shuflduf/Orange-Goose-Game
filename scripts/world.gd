@@ -14,3 +14,5 @@ var camera: Camera3D:
 func _process(_delta: float) -> void:
 	backround.position.x = camera.position.x
 	backround.position.y = camera.position.y
+	
+	backround.material_override.uv1_offset.x = (camera.position.x / backround.scale.x) * (parallax_effect)
