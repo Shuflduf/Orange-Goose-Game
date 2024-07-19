@@ -205,11 +205,7 @@ func die():
 	await get_tree().create_timer(0.5).timeout
 	
 	sprites.visible = false
-	#for child in get_children(true):
-		#if child is CollisionShape3D or child is Area3D:
-			#child.queue_free()
-		#else:
-			#continue
+
 	particles.restart()
 	await particles.finished
 	await get_tree().create_timer(0.5).timeout
