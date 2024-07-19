@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://b88gw4ibis1fy"]
+[gd_scene load_steps=24 format=3 uid="uid://b88gw4ibis1fy"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_52rpn"]
 [ext_resource type="Texture2D" uid="uid://p3wddy5561vo" path="res://assets/goose/normal/goose_body.png" id="2_t8001"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cb7ed8huqn6rr" path="res://assets/goose/normal/goose_eye.png" id="4_tqy23"]
 [ext_resource type="Texture2D" uid="uid://cva38uhbtx7kj" path="res://assets/goose/normal/goose_beak.png" id="5_7njpg"]
 [ext_resource type="PackedScene" uid="uid://dqkuja7p25wcy" path="res://scenes/health_overlay.tscn" id="6_dgv7y"]
+[ext_resource type="Texture2D" uid="uid://bnfhhbiconnou" path="res://assets/smoke.png" id="7_go2pp"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_j5yi2"]
 size = Vector3(2.3, 2.6, 1)
@@ -786,6 +787,43 @@ _data = {
 "walk": SubResource("Animation_aqyii")
 }
 
+[sub_resource type="Curve" id="Curve_x302e"]
+max_value = 2.0
+_data = [Vector2(0, 2), 0.0, 0.0, 0, 0, Vector2(0.377682, 1.01099), -3.37229, -3.37229, 0, 0, Vector2(0.643777, 0.725275), -1.38402, -1.38402, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_63hlf"]
+curve = SubResource("Curve_x302e")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_smkxv"]
+lifetime_randomness = 0.38
+particle_flag_rotate_y = true
+emission_shape_offset = Vector3(0, -0.315, 0)
+emission_shape = 3
+emission_box_extents = Vector3(0.5, 1, 0.5)
+angle_min = -15.0
+angle_max = 15.0
+direction = Vector3(0, 1, 0)
+spread = 132.231
+initial_velocity_max = 2.0
+gravity = Vector3(0, 3, 0)
+damping_max = 1.538
+scale_min = 0.7
+scale_max = 1.3
+scale_curve = SubResource("CurveTexture_63hlf")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7s3lr"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("7_go2pp")
+texture_filter = 2
+
+[sub_resource type="QuadMesh" id="QuadMesh_bfoda"]
+material = SubResource("StandardMaterial3D_7s3lr")
+
 [node name="Player" type="CharacterBody3D"]
 collision_layer = 2
 collision_mask = 5
@@ -859,6 +897,18 @@ wait_time = 3.0
 
 [node name="HealthUI" parent="." instance=ExtResource("6_dgv7y")]
 modulate = Color(1, 1, 1, 0)
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+emitting = false
+amount = 64
+lifetime = 1.5
+one_shot = true
+explosiveness = 1.0
+randomness = 0.41
+fixed_fps = 60
+visibility_aabb = AABB(-3.65761, -2.29458, -2.44494, 6.91928, 7.81257, 5.22592)
+process_material = SubResource("ParticleProcessMaterial_smkxv")
+draw_pass_1 = SubResource("QuadMesh_bfoda")
 
 [connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]
 [connection signal="area_exited" from="Area3D" to="." method="_on_area_3d_area_exited"]

@@ -63,6 +63,8 @@ func _physics_process(delta: float) -> void:
 			for i in hitbox.get_overlapping_bodies():
 				if i is Player:
 					i.take_damage(1)
+					if i.health <= 0:
+						target = null
 			animation.play("idle")
 			
 			return
@@ -79,9 +81,7 @@ func die():
 	for child in get_children(true):
 		if child is CollisionShape3D or child is Area3D:
 			print("DEL")
-			#child.disabled = true
 			child.queue_free()
-			#child.disable
 		else:
 			continue
 	particles.restart()

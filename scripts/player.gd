@@ -6,6 +6,7 @@ extends CharacterBody3D
 @onready var animation: AnimationPlayer = $AnimationPlayer
 @onready var health_ui: Panel = $HealthUI
 @onready var heal_timer: Timer = $HealTimer
+@onready var particles: GPUParticles3D = $GPUParticles3D
 
 @export var speed = 5.0
 @export var running_speed = 8.0
@@ -156,14 +157,29 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 func take_damage(damage):
 	health -= damage
 	update_health_ui()
+	
+	if health >= 0:
+		die()
+		return
+	
 	heal_timer.start()
-
 func update_health_ui():
 	var health_percent: float = 1 - (float(health) / float(max_health))
 	health_ui.modulate.a = health_percent
-
-
 func _on_heal_timer_timeout() -> void:
 	var tween = get_tree().create_tween()
 	health = max_health
 	tween.tween_property(self, "health_ui:modulate:a", 0.0, 1)
+
+
+func die():
+	sprites.visible = false
+	for child in get_children(true):
+		if child is CollisionShape3D or child is Area3D:
+			print("DEL")
+			child.queue_free()
+		else:
+			continue
+	particles.restart()
+	await particles.finished
+	#queue_free()
