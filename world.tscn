@@ -1,6 +1,7 @@
-[gd_scene load_steps=16 format=3 uid="uid://cmby72mtdbdsg"]
+[gd_scene load_steps=17 format=3 uid="uid://cmby72mtdbdsg"]
 
 [ext_resource type="Texture2D" uid="uid://bwfh42umg77s4" path="res://assets/SkyHDR.hdr" id="1_hcn6c"]
+[ext_resource type="Script" path="res://scripts/world.gd" id="1_qc3yi"]
 [ext_resource type="PackedScene" uid="uid://b88gw4ibis1fy" path="res://player.tscn" id="3_5b2j6"]
 [ext_resource type="Script" path="res://scripts/water.gd" id="4_480l2"]
 [ext_resource type="Script" path="res://scripts/update_camera.gd" id="4_gax0f"]
@@ -42,10 +43,10 @@ size = Vector3(1, 26.1311, 9.17993)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wedpr"]
 albedo_texture = ExtResource("8_gj3d7")
-uv1_offset = Vector3(-1.445, 0, 0)
 texture_filter = 2
 
 [node name="Node3D" type="Node3D"]
+script = ExtResource("1_qc3yi")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_c7kd5")
@@ -111,8 +112,8 @@ data = {
 }
 metadata/_editor_floor_ = Vector3(1, 7, 5)
 
-[node name="Sprite3D" type="Sprite3D" parent="."]
-transform = Transform3D(90, 0, 0, 0, 90, 0, 0, 0, 90, 0, 26.6926, -70.2731)
+[node name="Backround" type="Sprite3D" parent="."]
+transform = Transform3D(130, 0, 0, 0, 130, 0, 0, 0, 130, 0, 4, -63.697)
 material_override = SubResource("StandardMaterial3D_wedpr")
 shaded = true
 double_sided = false
@@ -122,3 +123,5 @@ texture = ExtResource("8_gj3d7")
 
 [connection signal="body_entered" from="Obstacles/WaterNode/Water" to="Player" method="_on_water_body_entered"]
 [connection signal="body_exited" from="Obstacles/WaterNode/Water" to="Player" method="_on_water_body_exited"]
+
+[editable path="Player"]
