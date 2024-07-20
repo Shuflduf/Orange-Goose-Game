@@ -44,6 +44,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("5_fmxa0")
 
 [node name="CenterContainer" type="CenterContainer" parent="Pause"]
@@ -53,9 +54,11 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Pause/CenterContainer"]
 layout_mode = 2
+mouse_filter = 2
 
 [node name="Continue" type="Button" parent="Pause/CenterContainer/VBoxContainer"]
 layout_mode = 2
@@ -82,3 +85,4 @@ theme_override_font_sizes/font_size = 36
 text = "Main Menu"
 
 [connection signal="pressed" from="Pause/CenterContainer/VBoxContainer/Continue" to="Pause" method="_on_continue_pressed"]
+[connection signal="pressed" from="Pause/CenterContainer/VBoxContainer/MainMenu" to="Pause" method="_on_main_menu_pressed"]

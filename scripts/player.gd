@@ -13,6 +13,7 @@ extends CharacterBody3D
 @onready var health_ui: Panel = ui.health_ui
 @onready var pause: Control = ui.pause
 
+@export_file("*.tscn") var main_menu: String
 @export var speed := 7.0
 @export var running_speed := 10.0
 @export var jump_height := 11.0
@@ -48,6 +49,9 @@ func _ready() -> void:
 	default_cam_pos = camera.position - position
 	respawn_point = global_position
 	health = max_health
+	ui.main_menu.connect(func() -> void:
+		SceneManager.transition_to(main_menu)
+	)
 
 
 func _physics_process(delta: float) -> void:

@@ -3,7 +3,7 @@ extends Node3D
 @onready var backround: Sprite3D = $Backround
 @onready var player: Player = $Player
 
-#@export var backround_offset := 130
+
 @export_range(0, 1, 0.05) var parallax_effect := 0.6
 
 var camera: Camera3D:

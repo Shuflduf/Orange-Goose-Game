@@ -5,7 +5,5 @@ extends Control
 @onready var pause: Control = $Pause
 
 signal pause_state(paused: bool)
+signal main_menu
 
-func _ready() -> void:
-	pause_state.connect(func(state: bool) -> void:
-		print(state))

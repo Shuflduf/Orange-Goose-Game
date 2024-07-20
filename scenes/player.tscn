@@ -863,6 +863,7 @@ hue_variation_max = 0.07
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_52rpn")
+main_menu = "res://scenes/mainmenu.tscn"
 
 [node name="Sprites" type="Node3D" parent="."]
 transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, 0, 0, 0)
