@@ -29,6 +29,7 @@ func _on_player_detect_body_exited(body: Node3D) -> void:
 	
 	
 func _physics_process(delta: float) -> void:
+	position.z = 0
 	if not is_on_floor():
 		velocity.y -= gravity * delta * gravity_mult
 	

@@ -8,6 +8,9 @@ extends CharacterBody3D
 @onready var heal_timer: Timer = $HealTimer
 @onready var particles: GPUParticles3D = $GPUParticles3D
 
+@onready var death_zoom_tween: Tween
+
+
 @export var speed = 5.0
 @export var running_speed = 8.0
 @export var jump_height = 11.0
@@ -45,14 +48,14 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	
+	print(death_offset_lerp)
 	if position.y < -30:
 		respawn()
 		return
 	
-	camera.position = lerp(camera.position, death_offset + position, death_offset_lerp)
 	
 	if dead:
+		camera.position = lerp(camera.position, death_offset + position, death_offset_lerp)
 		return
 	
 	camera.position.x = default_cam_pos.x + position.x + ahead_offset
@@ -198,10 +201,11 @@ func _on_heal_timer_timeout() -> void:
 func die():
 	dead = true
 	heal_timer.stop()
-	var tween = get_tree().create_tween()\
+	#death_offset_lerp = 0
+	var tween = get_tree().create_tween()
+	tween.tween_property(self, "death_offset_lerp", 1, 1.4)\
 			.set_ease(Tween.EASE_IN_OUT)\
 			.set_trans(Tween.TRANS_SINE)
-	tween.tween_property(self, "death_offset_lerp", 1, 1.4)
 	await tween.finished
 	
 	await get_tree().create_timer(0.5).timeout
@@ -215,9 +219,10 @@ func die():
 
 func respawn():
 	EnemyManager.load_all_enemies()
+	dead = false
 	global_position = respawn_point
 	sprites.visible = true
 	death_offset_lerp = 0
 	health_ui.modulate.a = 0
 	health = max_health
-	dead = false
+	
