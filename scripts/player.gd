@@ -1,14 +1,17 @@
 class_name Player
 extends CharacterBody3D
 
+@onready var ui: Control = $UI
+
 @onready var camera: Camera3D = $Camera3D
 @onready var sprites: Node3D = $Sprites
 @onready var animation: AnimationPlayer = $AnimationPlayer
-@onready var health_ui: Panel = $HealthUI
 @onready var heal_timer: Timer = $HealTimer
-@onready var particles: GPUParticles3D = $GPUParticles3D
-@onready var timer: Label = $Timer
-
+@onready var particles: GPUParticles3D = $DeathParticles
+@onready var win_particles: GPUParticles3D = $WinParticles
+@onready var timer: Label = ui.timer
+@onready var health_ui: Panel = ui.health_ui
+@onready var pause: Control = ui.pause
 
 @export var speed := 7.0
 @export var running_speed := 10.0
@@ -49,9 +52,9 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	
-	if !won:
+	if !won and !pause.visible:
 		timer.time += delta
-	else:
+	elif won:
 		timer.label_settings.font_color = Color.GREEN
 	
 	if position.y < -30:
@@ -64,7 +67,7 @@ func _physics_process(delta: float) -> void:
 	
 	camera.position = lerp(camera.position, death_offset + position, death_offset_lerp)
 	
-	if dead:
+	if dead or won or pause.visible:
 		return	
 		
 	if is_on_floor() and !in_water:
@@ -234,3 +237,10 @@ func tween_death_cam() -> void:
 	tween.tween_property(self, "death_offset_lerp", 1, 1.4)
 	await tween.finished
 	return
+
+
+func win() -> void:
+	won = true
+	await tween_death_cam()
+	await get_tree().create_timer(0.5).timeout
+	win_particles.restart()
