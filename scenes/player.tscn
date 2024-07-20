@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://b88gw4ibis1fy"]
+[gd_scene load_steps=27 format=3 uid="uid://b88gw4ibis1fy"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_52rpn"]
 [ext_resource type="Texture2D" uid="uid://p3wddy5561vo" path="res://assets/goose/normal/goose_body.png" id="2_t8001"]
@@ -7,6 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://cva38uhbtx7kj" path="res://assets/goose/normal/goose_beak.png" id="5_7njpg"]
 [ext_resource type="PackedScene" uid="uid://dqkuja7p25wcy" path="res://scenes/health_overlay.tscn" id="6_dgv7y"]
 [ext_resource type="Texture2D" uid="uid://bnfhhbiconnou" path="res://assets/smoke.png" id="7_go2pp"]
+[ext_resource type="FontFile" uid="uid://cbhvs7mr3v1uj" path="res://assets/PixelifySans-Regular.ttf" id="8_uht0l"]
+[ext_resource type="Script" path="res://scripts/timer.gd" id="9_ilhlg"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_j5yi2"]
 size = Vector3(2.3, 2.6, 1)
@@ -824,6 +826,14 @@ texture_filter = 2
 [sub_resource type="QuadMesh" id="QuadMesh_bfoda"]
 material = SubResource("StandardMaterial3D_7s3lr")
 
+[sub_resource type="LabelSettings" id="LabelSettings_l0so6"]
+font = ExtResource("8_uht0l")
+font_size = 41
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 6
+shadow_color = Color(0, 0, 0, 1)
+
 [node name="Player" type="CharacterBody3D"]
 collision_layer = 2
 collision_mask = 5
@@ -910,6 +920,15 @@ fixed_fps = 60
 visibility_aabb = AABB(-3.65761, -2.29458, -2.44494, 6.91928, 7.81257, 5.22592)
 process_material = SubResource("ParticleProcessMaterial_smkxv")
 draw_pass_1 = SubResource("QuadMesh_bfoda")
+
+[node name="Timer" type="Label" parent="."]
+offset_left = 32.0
+offset_top = 32.0
+offset_right = 219.0
+offset_bottom = 82.0
+text = "50:20:583"
+label_settings = SubResource("LabelSettings_l0so6")
+script = ExtResource("9_ilhlg")
 
 [connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]
 [connection signal="area_exited" from="Area3D" to="." method="_on_area_3d_area_exited"]

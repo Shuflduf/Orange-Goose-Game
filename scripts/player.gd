@@ -7,6 +7,7 @@ extends CharacterBody3D
 @onready var health_ui: Panel = $HealthUI
 @onready var heal_timer: Timer = $HealTimer
 @onready var particles: GPUParticles3D = $GPUParticles3D
+@onready var timer: Label = $Timer
 
 
 @export var speed := 7.0
@@ -37,6 +38,7 @@ var respawn_point: Vector3
 
 var running := false
 var dead := false
+var won := false
 
 func _ready() -> void:
 	EnemyManager.save_all_enemies()
@@ -46,6 +48,12 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	
+	if !won:
+		timer.time += delta
+	else:
+		timer.label_settings.font_color = Color.GREEN
+	
 	if position.y < -30:
 		respawn()
 		return

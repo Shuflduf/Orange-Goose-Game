@@ -16,3 +16,8 @@ func _process(_delta: float) -> void:
 	backround.position.y = camera.position.y
 	
 	backround.material_override.uv1_offset.x = (camera.position.x / backround.scale.x) * (parallax_effect)
+
+
+func _on_win_area_body_entered(body: Node3D) -> void:
+	if body is Player:
+		body.won = true
