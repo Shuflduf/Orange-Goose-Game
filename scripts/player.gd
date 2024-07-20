@@ -8,37 +8,35 @@ extends CharacterBody3D
 @onready var heal_timer: Timer = $HealTimer
 @onready var particles: GPUParticles3D = $GPUParticles3D
 
-@onready var death_zoom_tween: Tween
 
-
-@export var speed = 5.0
-@export var running_speed = 8.0
-@export var jump_height = 11.0
-@export var total_jumps = 2
-@export var max_health = 3
+@export var speed := 5.0
+@export var running_speed := 8.0
+@export var jump_height := 11.0
+@export var total_jumps := 2
+@export var max_health := 3
 
 @export_category("Camera Offsets")
-@export var default_water_offset = Vector2(0, 10)
-@export var default_ahead_offset = 4
-@export var death_offset = Vector3(0, 0, 4)
+@export var default_water_offset := Vector2(0, 10)
+@export var default_ahead_offset := 4
+@export var death_offset := Vector3(0, 0, 4)
 
 var ahead_offset: float
 var water_offset: Vector2 # Y and Z
-var world_offset = 0.0
-var death_offset_lerp = 0.0
+var world_offset := 0.0
+var death_offset_lerp := 0.0
 
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
-var gravity_mult = 1.5
-var jumps = total_jumps
-var weight_mult = 1
-var in_water = false
-var health = 0
-var following_player_y = false
+var gravity_mult := 1.5
+var jumps := total_jumps
+var weight_mult := 1
+var in_water := false
+var health := 0
+var following_player_y := false
 var default_cam_pos: Vector3
 var respawn_point: Vector3
 
-var running = false
-var dead = false
+var running := false
+var dead := false
 
 func _ready() -> void:
 	EnemyManager.save_all_enemies()
@@ -48,21 +46,19 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	print(death_offset_lerp)
 	if position.y < -30:
 		respawn()
-		return
-	
-	
-	if dead:
-		camera.position = lerp(camera.position, death_offset + position, death_offset_lerp)
 		return
 	
 	camera.position.x = default_cam_pos.x + position.x + ahead_offset
 	camera.position.z = default_cam_pos.z + water_offset.y
 	camera.position.y = default_cam_pos.y + water_offset.x + world_offset
 	
+	camera.position = lerp(camera.position, death_offset + position, death_offset_lerp)
 	
+	if dead:
+		return	
+		
 	if is_on_floor() and !in_water:
 		jumps = total_jumps
 	else:
@@ -114,11 +110,11 @@ func _physics_process(delta: float) -> void:
 		look_in_dir(velocity.y)
 	
 
-func change_dir_left(dir: bool):
+func change_dir_left(dir: bool) -> void:
 	if sprites.scale.x < 0 == dir:
 		flip_sprites(dir)
-		var mult = -1 if dir else 1
-		var tween = get_tree().create_tween().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+		var mult := -1 if dir else 1
+		var tween := get_tree().create_tween().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 		tween.tween_property(self, "ahead_offset", default_ahead_offset * mult, 0.5)
 
 
@@ -127,7 +123,7 @@ func _on_area_3d_area_entered(area: Area3D) -> void:
 		in_water = true
 		animation.play("RESET")
 		animation.queue("swimming")
-		var tween = get_tree().create_tween().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+		var tween := get_tree().create_tween().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 		tween.tween_property(self, "water_offset", default_water_offset, 0.5)
 		gravity = -ProjectSettings.get_setting("physics/3d/default_gravity") * area.gravity_mult
 	
@@ -141,26 +137,26 @@ func _on_area_3d_area_exited(area: Area3D) -> void:
 		jumps = total_jumps
 		in_water = false
 		animation.play("RESET", 0)
-		var tween = get_tree().create_tween().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+		var tween := get_tree().create_tween().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 		tween.tween_property(self, "water_offset", Vector2.ZERO, 0.5)
 		gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 		
 		animation.queue("jump_up" if velocity.y > 0 else "falling")
 
 
-func look_in_dir(vel):
+func look_in_dir(vel: float) -> void:
 	print(vel)
-	var dir = 1 if sprites.scale.x < 0 else -1
+	var dir := 1 if sprites.scale.x < 0 else -1
 	sprites.rotation_degrees.z = clamp(vel * dir * 4, -70, 70)
 
 
-func flip_sprites(dir: bool):
-	var offset = 1 if dir else -1
+func flip_sprites(dir: bool) -> void:
+	var offset := 1 if dir else -1
 	sprites.scale.x = 8 * offset
 
 
-func tween_world_offset(final: float):
-	var tween = get_tree().create_tween()\
+func tween_world_offset(final: float) -> void:
+	var tween := get_tree().create_tween()\
 			.set_ease(Tween.EASE_IN_OUT)\
 			.set_trans(Tween.TRANS_SINE)
 	tween.tween_property(self, "world_offset", final, 0.5)
@@ -174,7 +170,7 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 			velocity.y = jump_height / 2
 
 
-func take_damage(damage):
+func take_damage(damage: int) -> void:
 	health -= damage * 3 # FOR TESTING
 	update_health_ui()
 	
@@ -183,9 +179,9 @@ func take_damage(damage):
 		return
 	
 	heal_timer.start()
-func update_health_ui():
+func update_health_ui() -> void:
 	var health_percent: float = 1 - (float(health) / float(max_health))
-	var tween = get_tree().create_tween()\
+	var tween := get_tree().create_tween()\
 			.set_ease(Tween.EASE_OUT)\
 			.set_trans(Tween.TRANS_SINE)
 	tween.tween_property(health_ui, "modulate:a", health_percent, 0.3)
@@ -193,20 +189,18 @@ func update_health_ui():
 func _on_heal_timer_timeout() -> void:
 	if dead:
 		return
-	var tween = get_tree().create_tween()
+	var tween := get_tree().create_tween()
 	health = max_health
-	tween.tween_property(self, "health_ui:modulate:a", 0.0, 1)
+	update_health_ui()
 
 
-func die():
+func die() -> void:
+	if dead:
+		return
 	dead = true
 	heal_timer.stop()
 	#death_offset_lerp = 0
-	var tween = get_tree().create_tween()
-	tween.tween_property(self, "death_offset_lerp", 1, 1.4)\
-			.set_ease(Tween.EASE_IN_OUT)\
-			.set_trans(Tween.TRANS_SINE)
-	await tween.finished
+	await tween_death_cam()
 	
 	await get_tree().create_timer(0.5).timeout
 	
@@ -217,12 +211,19 @@ func die():
 	await get_tree().create_timer(0.5).timeout
 	respawn()
 
-func respawn():
+func respawn() -> void:
 	EnemyManager.load_all_enemies()
 	dead = false
+	death_offset_lerp = 0.0
 	global_position = respawn_point
 	sprites.visible = true
-	death_offset_lerp = 0
 	health_ui.modulate.a = 0
 	health = max_health
 	
+func tween_death_cam() -> void:
+	var tween := get_tree().create_tween()\
+			.set_ease(Tween.EASE_IN_OUT)\
+			.set_trans(Tween.TRANS_SINE)
+	tween.tween_property(self, "death_offset_lerp", 1, 1.4)
+	await tween.finished
+	return

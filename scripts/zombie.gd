@@ -1,21 +1,21 @@
 class_name Zombie
 extends CharacterBody3D
 
-@onready var animation: AnimationPlayer = $AnimationPlayer
-@onready var sprites: Node3D = $Sprites
-@onready var attack_cooldown: Timer = $AttackCooldown
-@onready var hitbox: Area3D = $Sprites/HitBox
-@onready var collision: CollisionShape3D = $CollisionShape3D
-@onready var particles: GPUParticles3D = $GPUParticles3D
+@onready var animation := $AnimationPlayer
+@onready var sprites := $Sprites
+@onready var attack_cooldown := $AttackCooldown
+@onready var hitbox := $Sprites/HitBox
+@onready var collision := $CollisionShape3D
+@onready var particles := $GPUParticles3D
 
-@export var speed = 5.0
+@export var speed := 5.0
 
 var target: Player
 
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
-var gravity_mult = 1.5
+var gravity_mult := 1.5
 
-var attacking = false
+var attacking := false
 
 func _on_player_detect_body_entered(body: Node3D) -> void:
 	if body is Player:
@@ -39,14 +39,14 @@ func _physics_process(delta: float) -> void:
 		return
 	
 	if target != null and !target.dead:
-		var move_dir = global_position.direction_to(target.global_position)
+		var move_dir := global_position.direction_to(target.global_position)
 		move_dir *= Vector3.RIGHT
-		var d = abs(global_position.x - target.global_position.x)
+		var d: float = abs(global_position.x - target.global_position.x)
 		if d > 1.0:
 			move_dir = move_dir.normalized()
 			sprites.scale.x = -8 * move_dir.x
 		else:
-			move_dir = Vector2.ZERO
+			move_dir = Vector3.ZERO
 			animation.play("idle")
 		
 		 
@@ -59,7 +59,7 @@ func _physics_process(delta: float) -> void:
 			
 			
 			await animation.animation_finished 
-			for i in hitbox.get_overlapping_bodies():
+			for i: PhysicsBody3D in hitbox.get_overlapping_bodies():
 				if i is Player:
 					i.take_damage(1)
 					#if i.health <= 0:
@@ -75,7 +75,7 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 
-func die():
+func die() -> void:
 	sprites.visible = false
 	for child in get_children(true):
 		if child is CollisionShape3D or child is Area3D:

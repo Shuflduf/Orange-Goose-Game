@@ -796,7 +796,7 @@ point_count = 4
 curve = SubResource("Curve_x302e")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_smkxv"]
-lifetime_randomness = 0.38
+lifetime_randomness = 1.0
 particle_flag_rotate_y = true
 emission_shape_offset = Vector3(0, -0.315, 0)
 emission_shape = 3
@@ -902,7 +902,7 @@ modulate = Color(1, 1, 1, 0)
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
 emitting = false
 amount = 64
-lifetime = 1.5
+lifetime = 2.0
 one_shot = true
 explosiveness = 1.0
 randomness = 0.41
