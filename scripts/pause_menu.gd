@@ -12,3 +12,8 @@ func _unhandled_key_input(event: InputEvent) -> void:
 		ui.pause_state.emit(!visible)
 		visible = !visible
 	
+
+
+func _on_continue_pressed() -> void:
+	visible = !visible
+	ui.pause_state.emit(visible)

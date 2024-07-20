@@ -80,3 +80,5 @@ mouse_default_cursor_shape = 2
 theme_override_fonts/font = ExtResource("2_21lko")
 theme_override_font_sizes/font_size = 36
 text = "Main Menu"
+
+[connection signal="pressed" from="Pause/CenterContainer/VBoxContainer/Continue" to="Pause" method="_on_continue_pressed"]
