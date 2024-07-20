@@ -60,16 +60,17 @@ func _physics_process(delta: float) -> void:
 	camera.position.y = default_cam_pos.y + water_offset.x + world_offset
 	
 	
-	
 	if is_on_floor() and !in_water:
 		jumps = total_jumps
 	else:
 		velocity.y -= gravity * delta * weight_mult * gravity_mult
 	
+	
 	if Input.is_action_just_pressed("run"):
 		running = true
 	elif Input.is_action_just_released("run"):
 		running = false
+	
 	
 	if Input.is_action_pressed("down"):
 		weight_mult = -2 if in_water else 3
@@ -78,7 +79,6 @@ func _physics_process(delta: float) -> void:
 	else:
 		weight_mult = 1
 		
-	
 
 	var input_dir := Input.get_axis("left", "right")
 	var direction := (transform.basis * Vector3(input_dir, 0, 0)).normalized()
@@ -172,7 +172,7 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 
 
 func take_damage(damage):
-	health -= damage
+	health -= damage * 3 # FOR TESTING
 	update_health_ui()
 	
 	if health <= 0:
@@ -197,6 +197,7 @@ func _on_heal_timer_timeout() -> void:
 
 func die():
 	dead = true
+	heal_timer.stop()
 	var tween = get_tree().create_tween()\
 			.set_ease(Tween.EASE_IN_OUT)\
 			.set_trans(Tween.TRANS_SINE)

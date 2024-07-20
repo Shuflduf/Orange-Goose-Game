@@ -1165,6 +1165,9 @@ shape = SubResource("BoxShape3D_3mj02")
 [node name="Zombie" parent="Enemies" instance=ExtResource("6_yiqvi")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 159.532, 0.162051, 0)
 
+[node name="Zombie2" parent="Enemies" instance=ExtResource("6_yiqvi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 163.532, 0.162051, 0)
+
 [node name="ZombieDecoy1" type="Node3D" parent="Enemies"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 159.718, 3.36205, -22)
 
