@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://jrgmsu1gncor"]
+[gd_scene load_steps=51 format=3 uid="uid://jrgmsu1gncor"]
 
 [ext_resource type="Texture2D" uid="uid://f4parbh5le6s" path="res://assets/world/mc/stone.png" id="2_84dbg"]
 [ext_resource type="ArrayMesh" uid="uid://copkcxr26jimy" path="res://assets/world/tilemap_cube.tres" id="2_xsknf"]
@@ -15,6 +15,8 @@
 [ext_resource type="Texture2D" uid="uid://bd061wbwi55rm" path="res://assets/world/mc/glass_pane_empty.png" id="13_x6jtj"]
 [ext_resource type="Texture2D" uid="uid://vcqa7xtd81eu" path="res://assets/world/mc/smooth_stone.png" id="14_2n1am"]
 [ext_resource type="ArrayMesh" uid="uid://cdkyteth4kva" path="res://assets/world/tilemap_chain.tres" id="15_soscg"]
+[ext_resource type="Texture2D" uid="uid://ygeenaibuybl" path="res://assets/world/mc/granite.png" id="16_42464"]
+[ext_resource type="Texture2D" uid="uid://bryci15xudrq7" path="res://assets/world/mc/diorite.png" id="17_5mmsy"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mssry"]
 size = Vector3(2, 2, 2)
@@ -268,6 +270,46 @@ blend_shape_mode = 0
 [sub_resource type="BoxShape3D" id="BoxShape3D_0iw3y"]
 size = Vector3(0.25, 20, 0.25)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w1cq6"]
+albedo_texture = ExtResource("16_42464")
+texture_filter = 2
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_ueigb"]
+resource_name = "tilemap_cube_Cube_001"
+_surfaces = [{
+"aabb": AABB(-1, -1, -1, 2, 2, 2.00001),
+"attribute_data": PackedByteArray(3, 0, 251, 255, 168, 170, 3, 0, 86, 85, 251, 255, 3, 0, 3, 0, 170, 170, 0, 0, 86, 85, 3, 0, 86, 85, 251, 255, 86, 85, 3, 0, 3, 0, 251, 255, 86, 85, 3, 0, 255, 255, 0, 0, 3, 0, 3, 0, 86, 85, 251, 255, 168, 170, 251, 255, 3, 0, 251, 255, 86, 85, 3, 0, 170, 170, 255, 255, 3, 0, 3, 0, 3, 0, 251, 255, 86, 85, 251, 255, 86, 85, 251, 255, 3, 0, 3, 0, 255, 255, 255, 255, 86, 85, 3, 0),
+"format": 34896613399,
+"index_count": 36,
+"index_data": PackedByteArray(2, 0, 11, 0, 5, 0, 2, 0, 8, 0, 11, 0, 6, 0, 21, 0, 9, 0, 6, 0, 18, 0, 21, 0, 20, 0, 17, 0, 23, 0, 20, 0, 14, 0, 17, 0, 12, 0, 3, 0, 15, 0, 12, 0, 0, 0, 3, 0, 7, 0, 13, 0, 19, 0, 7, 0, 1, 0, 13, 0, 22, 0, 4, 0, 10, 0, 22, 0, 16, 0, 4, 0),
+"material": SubResource("StandardMaterial3D_w1cq6"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 24,
+"vertex_data": PackedByteArray(0, 0, 0, 0, 254, 255, 0, 128, 0, 0, 0, 0, 254, 255, 84, 213, 0, 0, 0, 0, 254, 255, 255, 191, 0, 0, 255, 255, 254, 255, 0, 128, 0, 0, 255, 255, 254, 255, 84, 213, 0, 0, 255, 255, 254, 255, 255, 191, 0, 0, 0, 0, 0, 0, 255, 255, 0, 0, 0, 0, 0, 0, 84, 213, 0, 0, 0, 0, 0, 0, 255, 191, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 84, 213, 0, 0, 255, 255, 0, 0, 255, 191, 255, 255, 0, 0, 254, 255, 0, 128, 255, 255, 0, 0, 254, 255, 84, 213, 255, 255, 0, 0, 254, 255, 255, 191, 255, 255, 255, 255, 254, 255, 0, 128, 255, 255, 255, 255, 254, 255, 84, 213, 255, 255, 255, 255, 254, 255, 255, 191, 255, 255, 0, 0, 0, 0, 255, 255, 255, 255, 0, 0, 0, 0, 84, 213, 255, 255, 0, 0, 0, 0, 255, 191, 255, 255, 255, 255, 0, 0, 255, 255, 255, 255, 255, 255, 0, 0, 84, 213, 255, 255, 255, 255, 0, 0, 255, 191, 255, 127, 255, 255, 170, 42, 84, 213, 255, 127, 255, 255, 255, 127, 255, 255, 84, 213, 170, 42, 255, 127, 255, 255, 255, 127, 255, 255, 170, 42, 84, 213, 255, 127, 255, 255, 255, 127, 255, 255, 84, 213, 170, 42, 255, 127, 255, 255, 255, 127, 255, 255, 170, 42, 84, 213, 255, 127, 0, 0, 255, 127, 255, 255, 84, 213, 170, 42, 255, 127, 0, 0, 255, 127, 255, 255, 170, 42, 84, 213, 255, 127, 0, 0, 255, 127, 255, 255, 84, 213, 170, 42, 255, 127, 0, 0)
+}]
+blend_shape_mode = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t7lkd"]
+albedo_texture = ExtResource("17_5mmsy")
+texture_filter = 2
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_t3byn"]
+resource_name = "tilemap_cube_Cube_001"
+_surfaces = [{
+"aabb": AABB(-1, -1, -1, 2, 2, 2.00001),
+"attribute_data": PackedByteArray(3, 0, 251, 255, 168, 170, 3, 0, 86, 85, 251, 255, 3, 0, 3, 0, 170, 170, 0, 0, 86, 85, 3, 0, 86, 85, 251, 255, 86, 85, 3, 0, 3, 0, 251, 255, 86, 85, 3, 0, 255, 255, 0, 0, 3, 0, 3, 0, 86, 85, 251, 255, 168, 170, 251, 255, 3, 0, 251, 255, 86, 85, 3, 0, 170, 170, 255, 255, 3, 0, 3, 0, 3, 0, 251, 255, 86, 85, 251, 255, 86, 85, 251, 255, 3, 0, 3, 0, 255, 255, 255, 255, 86, 85, 3, 0),
+"format": 34896613399,
+"index_count": 36,
+"index_data": PackedByteArray(2, 0, 11, 0, 5, 0, 2, 0, 8, 0, 11, 0, 6, 0, 21, 0, 9, 0, 6, 0, 18, 0, 21, 0, 20, 0, 17, 0, 23, 0, 20, 0, 14, 0, 17, 0, 12, 0, 3, 0, 15, 0, 12, 0, 0, 0, 3, 0, 7, 0, 13, 0, 19, 0, 7, 0, 1, 0, 13, 0, 22, 0, 4, 0, 10, 0, 22, 0, 16, 0, 4, 0),
+"material": SubResource("StandardMaterial3D_t7lkd"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 24,
+"vertex_data": PackedByteArray(0, 0, 0, 0, 254, 255, 0, 128, 0, 0, 0, 0, 254, 255, 84, 213, 0, 0, 0, 0, 254, 255, 255, 191, 0, 0, 255, 255, 254, 255, 0, 128, 0, 0, 255, 255, 254, 255, 84, 213, 0, 0, 255, 255, 254, 255, 255, 191, 0, 0, 0, 0, 0, 0, 255, 255, 0, 0, 0, 0, 0, 0, 84, 213, 0, 0, 0, 0, 0, 0, 255, 191, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 84, 213, 0, 0, 255, 255, 0, 0, 255, 191, 255, 255, 0, 0, 254, 255, 0, 128, 255, 255, 0, 0, 254, 255, 84, 213, 255, 255, 0, 0, 254, 255, 255, 191, 255, 255, 255, 255, 254, 255, 0, 128, 255, 255, 255, 255, 254, 255, 84, 213, 255, 255, 255, 255, 254, 255, 255, 191, 255, 255, 0, 0, 0, 0, 255, 255, 255, 255, 0, 0, 0, 0, 84, 213, 255, 255, 0, 0, 0, 0, 255, 191, 255, 255, 255, 255, 0, 0, 255, 255, 255, 255, 255, 255, 0, 0, 84, 213, 255, 255, 255, 255, 0, 0, 255, 191, 255, 127, 255, 255, 170, 42, 84, 213, 255, 127, 255, 255, 255, 127, 255, 255, 84, 213, 170, 42, 255, 127, 255, 255, 255, 127, 255, 255, 170, 42, 84, 213, 255, 127, 255, 255, 255, 127, 255, 255, 84, 213, 170, 42, 255, 127, 255, 255, 255, 127, 255, 255, 170, 42, 84, 213, 255, 127, 0, 0, 255, 127, 255, 255, 84, 213, 170, 42, 255, 127, 0, 0, 255, 127, 255, 255, 170, 42, 84, 213, 255, 127, 0, 0, 255, 127, 255, 255, 84, 213, 170, 42, 255, 127, 0, 0)
+}]
+blend_shape_mode = 0
+
 [node name="Node3D" type="Node3D"]
 
 [node name="Grass" type="MeshInstance3D" parent="."]
@@ -425,3 +467,23 @@ collision_mask = 0
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Chain/StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9, 0)
 shape = SubResource("BoxShape3D_0iw3y")
+
+[node name="Granite" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 16)
+mesh = SubResource("ArrayMesh_ueigb")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Granite"]
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Granite/StaticBody3D"]
+shape = SubResource("BoxShape3D_mssry")
+
+[node name="Diorite" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 16)
+mesh = SubResource("ArrayMesh_t3byn")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Diorite"]
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Diorite/StaticBody3D"]
+shape = SubResource("BoxShape3D_mssry")
