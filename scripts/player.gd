@@ -9,8 +9,8 @@ extends CharacterBody3D
 @onready var particles: GPUParticles3D = $GPUParticles3D
 
 
-@export var speed := 5.0
-@export var running_speed := 8.0
+@export var speed := 7.0
+@export var running_speed := 10.0
 @export var jump_height := 11.0
 @export var total_jumps := 2
 @export var max_health := 3
@@ -95,7 +95,7 @@ func _physics_process(delta: float) -> void:
 			animation.play("idle", 0.5)
 		velocity.x = move_toward(velocity.x, 0, speed)
 		
-	if Input.is_action_just_pressed("jump") and jumps > 0 and !in_water:
+	if Input.is_action_just_pressed("jump") and jumps > 0 and !in_water and is_on_floor():
 			velocity.y = jump_height
 			jumps -= 1
 			animation.play("jump", 0.1)
@@ -167,11 +167,11 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 		if velocity.y < -1:
 			
 			body.die()
-			velocity.y = jump_height / 2
+			velocity.y = jump_height / 1.5
 
 
 func take_damage(damage: int) -> void:
-	health -= damage * 3 # FOR TESTING
+	health -= damage
 	update_health_ui()
 	
 	if health <= 0:
@@ -189,7 +189,6 @@ func update_health_ui() -> void:
 func _on_heal_timer_timeout() -> void:
 	if dead:
 		return
-	var tween := get_tree().create_tween()
 	health = max_health
 	update_health_ui()
 
