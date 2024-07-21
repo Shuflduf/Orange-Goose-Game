@@ -14,6 +14,7 @@ extends CharacterBody3D
 @onready var pause: Control = ui.pause
 
 @export_file("*.tscn") var main_menu: String
+@export_file("*.tscn") var world_scene: String
 @export var speed := 7.0
 @export var running_speed := 10.0
 @export var jump_height := 11.0
@@ -51,13 +52,17 @@ func _ready() -> void:
 	health = max_health
 	ui.main_menu.connect(func() -> void:
 		SceneManager.transition_to(main_menu)
-	)
-
+		)
+	ui.reload.connect(func() -> void:
+		SceneManager.transition_to(world_scene)
+		)
+	
+	ahead_offset = default_ahead_offset
 
 func _physics_process(delta: float) -> void:
-	
 	if !won and !pause.visible:
 		timer.time += delta
+		timer.label_settings.font_color = Color.WHITE
 	elif won:
 		timer.label_settings.font_color = Color.GREEN
 	
@@ -161,7 +166,7 @@ func _on_area_3d_area_exited(area: Area3D) -> void:
 
 func look_in_dir(vel: float) -> void:
 	print(vel)
-	var dir := 1 if sprites.scale.x < 0 else -1
+	var dir := 1 if sprites.scale.x > 0 else -1
 	sprites.rotation_degrees.z = clamp(vel * dir * 4, -70, 70)
 
 
@@ -248,3 +253,6 @@ func win() -> void:
 	await tween_death_cam()
 	await get_tree().create_timer(0.5).timeout
 	win_particles.restart()
+	await win_particles.finished
+	await get_tree().create_timer(0.5).timeout
+	ui.win()

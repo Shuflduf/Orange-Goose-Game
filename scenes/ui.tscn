@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://33oxghryxme5"]
+[gd_scene load_steps=8 format=3 uid="uid://33oxghryxme5"]
 
 [ext_resource type="PackedScene" uid="uid://dqkuja7p25wcy" path="res://scenes/health_overlay.tscn" id="1_bwg3g"]
 [ext_resource type="Script" path="res://scripts/ui.gd" id="1_ftrcb"]
 [ext_resource type="FontFile" uid="uid://cbhvs7mr3v1uj" path="res://assets/PixelifySans-Regular.ttf" id="2_21lko"]
 [ext_resource type="Script" path="res://scripts/timer.gd" id="3_25fe0"]
 [ext_resource type="Script" path="res://scripts/pause_menu.gd" id="5_fmxa0"]
+[ext_resource type="Script" path="res://scripts/win_screen.gd" id="6_6hrsu"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_s8pur"]
 font = ExtResource("2_21lko")
@@ -47,6 +48,14 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("5_fmxa0")
 
+[node name="Panel" type="Panel" parent="Pause"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="CenterContainer" type="CenterContainer" parent="Pause"]
 layout_mode = 1
 anchors_preset = 15
@@ -84,5 +93,56 @@ theme_override_fonts/font = ExtResource("2_21lko")
 theme_override_font_sizes/font_size = 36
 text = "Main Menu"
 
+[node name="WinScreen" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("6_6hrsu")
+
+[node name="Panel" type="Panel" parent="WinScreen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="WinScreen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="WinScreen/CenterContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Restart" type="Button" parent="WinScreen/CenterContainer/VBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme_override_fonts/font = ExtResource("2_21lko")
+theme_override_font_sizes/font_size = 36
+text = "Restart"
+
+[node name="MainMenu" type="Button" parent="WinScreen/CenterContainer/VBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme_override_fonts/font = ExtResource("2_21lko")
+theme_override_font_sizes/font_size = 36
+text = "Main Menu"
+
 [connection signal="pressed" from="Pause/CenterContainer/VBoxContainer/Continue" to="Pause" method="_on_continue_pressed"]
+[connection signal="pressed" from="Pause/CenterContainer/VBoxContainer/Restart" to="Pause" method="_on_restart_pressed"]
 [connection signal="pressed" from="Pause/CenterContainer/VBoxContainer/MainMenu" to="Pause" method="_on_main_menu_pressed"]
+[connection signal="pressed" from="WinScreen/CenterContainer/VBoxContainer/Restart" to="WinScreen" method="_on_restart_pressed"]
+[connection signal="pressed" from="WinScreen/CenterContainer/VBoxContainer/MainMenu" to="WinScreen" method="_on_main_menu_pressed"]

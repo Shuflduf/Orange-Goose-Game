@@ -1,9 +1,18 @@
-[gd_scene load_steps=6 format=3 uid="uid://gte84p6udpvj"]
+[gd_scene load_steps=10 format=3 uid="uid://gte84p6udpvj"]
 
 [ext_resource type="Shader" path="res://resources/shaders/mainmenu.gdshader" id="1_3i5wc"]
 [ext_resource type="Script" path="res://scenes/mainmenu.gd" id="1_g2nl8"]
+[ext_resource type="Shader" path="res://resources/shaders/simple_scroll.gdshader" id="2_pqkfh"]
 [ext_resource type="Texture2D" uid="uid://timj0tnroj7e" path="res://assets/logo.png" id="2_xk01c"]
+[ext_resource type="Texture2D" uid="uid://dgypqywotcboj" path="res://assets/backround.png" id="3_dbf7a"]
 [ext_resource type="FontFile" uid="uid://cbhvs7mr3v1uj" path="res://assets/PixelifySans-Regular.ttf" id="3_qbd5o"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ktjcf"]
+shader = ExtResource("2_pqkfh")
+shader_parameter/speed_dir = Vector2(-0.03, 0)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pmfe1"]
+texture = ExtResource("3_dbf7a")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_23ndi"]
 shader = ExtResource("1_3i5wc")
@@ -27,6 +36,16 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_g2nl8")
 game_scene = "res://scenes/world.tscn"
+
+[node name="Backround" type="Panel" parent="."]
+material = SubResource("ShaderMaterial_ktjcf")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_pmfe1")
 
 [node name="Panel" type="Panel" parent="."]
 material = SubResource("ShaderMaterial_23ndi")
