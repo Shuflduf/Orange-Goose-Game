@@ -9,7 +9,7 @@ extends CharacterBody3D
 @onready var heal_timer: Timer = $HealTimer
 @onready var particles: GPUParticles3D = $DeathParticles
 @onready var win_particles: GPUParticles3D = $WinParticles
-@onready var walk_sound: WalkSound = $WalkSound
+@onready var sound: PlayerSound = $Sound
 
 @onready var timer: Label = ui.timer
 @onready var health_ui: Panel = ui.health_ui
@@ -156,6 +156,7 @@ func _on_area_3d_area_entered(area: Area3D) -> void:
 		var tween := get_tree().create_tween().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 		tween.tween_property(self, "water_offset", default_water_offset, 0.5)
 		gravity = -ProjectSettings.get_setting("physics/3d/default_gravity") * area.gravity_mult
+		sound.enter_water()
 	
 	if area is CameraUpdater:
 		tween_world_offset(area.new_camera_offset)
@@ -170,6 +171,7 @@ func _on_area_3d_area_exited(area: Area3D) -> void:
 		var tween := get_tree().create_tween().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 		tween.tween_property(self, "water_offset", Vector2.ZERO, 0.5)
 		gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
+		sound.leave_water()
 		
 		animation.queue("jump_up" if velocity.y > 0 else "falling")
 
@@ -273,5 +275,5 @@ func get_block_below() -> void:
 	var under := gridmap.get_cell_item(grid_coords)
 	if under != -1:
 		var block_name: String = gridmap.mesh_library.get_item_name(under)
-		walk_sound.match_block_name(block_name)
-	walk_sound.step()
+		sound.match_block_name(block_name)
+	sound.step()
