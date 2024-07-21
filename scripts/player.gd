@@ -274,4 +274,4 @@ func get_block_below() -> void:
 	var under := gridmap.get_cell_item(grid_coords)
 	if under != -1:
 		var block_name: String = gridmap.mesh_library.get_item_name(under)
-		print(block_name)
+		walk_sound.match_block_name(block_name)
