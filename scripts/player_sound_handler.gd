@@ -19,9 +19,9 @@ const STEP_SOUNDS = {
 	blockType.OTHER: null,
 	}
 const WATER_SOUNDS = {
-	"Enter" = "res://assets/sounds/water/enter/",
-	"Exit" = "res://assets/sounds/water/exit/",
-	"Ambience" = "res://assets/sounds/water/ambience.ogg"
+	"Enter": "res://assets/sounds/water/enter/",
+	"Exit": "res://assets/sounds/water/exit/",
+	"Ambience": "res://assets/sounds/water/ambience.ogg"
 	}
 
 var current_block_type: blockType

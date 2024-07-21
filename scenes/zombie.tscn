@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://cyi6fv3re5ax8"]
+[gd_scene load_steps=28 format=3 uid="uid://cyi6fv3re5ax8"]
 
 [ext_resource type="Script" path="res://scripts/zombie.gd" id="1_hpuox"]
 [ext_resource type="Texture2D" uid="uid://2jt2ligy4rhb" path="res://assets/goose/zombie/zgoose_body.png" id="2_cs1kq"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://dt6tbaimoqbe6" path="res://assets/goose/zombie/zgoose_beak.png" id="5_mbnro"]
 [ext_resource type="Texture2D" uid="uid://bnfhhbiconnou" path="res://assets/smoke.png" id="6_n75ba"]
 [ext_resource type="PackedScene" uid="uid://dfb4xc3hcmto3" path="res://scenes/sound.tscn" id="7_efvyj"]
+[ext_resource type="Script" path="res://scripts/zombie_sound_handler.gd" id="8_unviu"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7ar7g"]
 size = Vector3(0.3, 0.299805, 0.230225)
@@ -1132,14 +1133,12 @@ texture_filter = 0
 texture = ExtResource("3_u3yq5")
 
 [node name="Eye" type="Sprite3D" parent="Sprites"]
-transform = Transform3D(0.999895, -0.0144844, 0, 0.0144844, 0.999895, 0, 0, 0, 1, 0, -0.00443509, 0)
 sorting_offset = 1.0
 alpha_cut = 2
 texture_filter = 0
 texture = ExtResource("4_5yxy6")
 
 [node name="Beak" type="Sprite3D" parent="Sprites"]
-transform = Transform3D(0.999895, -0.0144844, 0, 0.0144844, 0.999895, 0, 0, 0, 1, 0, -0.00443509, 0)
 sorting_offset = 0.5
 alpha_cut = 2
 texture_filter = 0
@@ -1189,6 +1188,11 @@ process_material = SubResource("ParticleProcessMaterial_dc3l0")
 draw_pass_1 = SubResource("QuadMesh_7pn6o")
 
 [node name="Sound" parent="." instance=ExtResource("7_efvyj")]
+volume_db = 10.0
+script = ExtResource("8_unviu")
+
+[node name="GroanTimer" type="Timer" parent="Sound"]
+wait_time = 10.0
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="body_entered" from="PlayerDetect" to="." method="_on_player_detect_body_entered"]

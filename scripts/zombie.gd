@@ -84,6 +84,7 @@ func die() -> void:
 		else:
 			continue
 	particles.restart()
+	sound.die()
 	await particles.finished
 	queue_free()
 
