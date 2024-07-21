@@ -9,7 +9,7 @@ extends CharacterBody3D
 @onready var heal_timer: Timer = $HealTimer
 @onready var particles: GPUParticles3D = $DeathParticles
 @onready var win_particles: GPUParticles3D = $WinParticles
-@onready var walk_sound: AudioStreamPlayer3D = $WalkSound
+@onready var walk_sound: WalkSound = $WalkSound
 
 @onready var timer: Label = ui.timer
 @onready var health_ui: Panel = ui.health_ui
@@ -87,7 +87,6 @@ func _physics_process(delta: float) -> void:
 	if dead or won or pause.visible:
 		return	
 		
-	get_block_below()
 	
 	if is_on_floor() and !in_water:
 		jumps = total_jumps
@@ -275,3 +274,4 @@ func get_block_below() -> void:
 	if under != -1:
 		var block_name: String = gridmap.mesh_library.get_item_name(under)
 		walk_sound.match_block_name(block_name)
+	walk_sound.step()

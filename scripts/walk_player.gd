@@ -1,3 +1,4 @@
+class_name WalkSound
 extends AudioStreamPlayer3D
 
 enum blockType {
@@ -18,28 +19,32 @@ const SOUNDS = {
 
 var current_block_type: blockType
 
-func play_r_pitch(deviation: float) -> void:
-	pitch_scale = 1
-	pitch_scale = randf_range(1 - deviation, 1 + deviation)
+func step() -> void:
+	stream = load(random_sound_from_dir(SOUNDS[current_block_type]))
 	play()
+	
 
 func match_block_name(block_name: String) -> void:
-	var type: blockType
+	
+	
 	match block_name:
 		"Grass":
-			type = blockType.Grass
+			current_block_type = blockType.Grass
 		"Dirt":
-			type = blockType.Dirt
+			current_block_type = blockType.Dirt
 		"Stone", "Cobblestone", "SmoothStone", "Granite", "Diorite":
-			type = blockType.Stone
+			current_block_type = blockType.Stone
 		"WoodPlank", "WoodPlankStair", "WoodSlab":
-			type = blockType.Wood
-		_:
-			type = blockType.OTHER
-	random_sound_from_dir(SOUNDS[type])
+			current_block_type = blockType.Wood
+		#_:
+			#current_block_type = blockType.OTHER
+			
+	#random_sound_from_dir(SOUNDS[current_block_type])
 
-func random_sound_from_dir(path: String) -> void:
+func random_sound_from_dir(path: String) -> String:
 	var dir := DirAccess.open(path)
+	var file_path: String = path
+	@warning_ignore("integer_division")
 	var rand_index := randi_range(0, dir.get_files().size() - 1) / 2
-	print(dir.get_files()[rand_index * 2])
-	#stream = load(dir.get_files()[0])
+	file_path += dir.get_files()[rand_index * 2]
+	return file_path
