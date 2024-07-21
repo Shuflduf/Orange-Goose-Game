@@ -7,6 +7,7 @@ extends CharacterBody3D
 @onready var hitbox := $Sprites/HitBox
 @onready var collision := $CollisionShape3D
 @onready var particles := $GPUParticles3D
+@onready var sound: PlayerSound = $Sound
 
 @export var speed := 5.0
 
@@ -90,3 +91,14 @@ func die() -> void:
 func _on_attack_cooldown_timeout() -> void:
 	attacking = false
 	#animation.pla
+
+
+func get_block_below() -> void:
+	var gridmap: GridMap = get_tree().root.find_child("GridMap", true, false)
+	var p := global_position + Vector3(0, -2.5, 0)
+	var grid_coords := gridmap.local_to_map(Vector3i(p - gridmap.global_position))
+	var under := gridmap.get_cell_item(grid_coords)
+	if under != -1:
+		var block_name: String = gridmap.mesh_library.get_item_name(under)
+		sound.match_block_name(block_name)
+	sound.step()

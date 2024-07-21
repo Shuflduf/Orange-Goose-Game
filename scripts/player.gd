@@ -131,7 +131,6 @@ func _physics_process(delta: float) -> void:
 			animation.play("jump", 0.1)
 			animation.queue("jump_up")
 			get_block_below()
-			sound.step()
 	
 	if !is_on_floor() and velocity.y < 0 and !in_water:
 		animation.play("falling")

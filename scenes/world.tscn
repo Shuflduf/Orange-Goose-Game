@@ -1088,7 +1088,7 @@ transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75
 shadow_enabled = true
 
 [node name="Player" parent="." instance=ExtResource("3_5b2j6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.305, 1.214, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 114, 5.25, 0)
 total_jumps = 1
 default_water_offset = Vector2(-10, 10)
 
@@ -1385,6 +1385,9 @@ collision_mask = 2
 [node name="CollisionShape3D" type="CollisionShape3D" parent="WinArea"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.79669, 0)
 shape = SubResource("BoxShape3D_tiifs")
+
+[node name="Spawn" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 1.25, 0)
 
 [connection signal="body_entered" from="Features/WaterNode/Water" to="Player" method="_on_water_body_entered"]
 [connection signal="body_exited" from="Features/WaterNode/Water" to="Player" method="_on_water_body_exited"]

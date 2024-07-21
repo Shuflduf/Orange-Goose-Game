@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://cyi6fv3re5ax8"]
+[gd_scene load_steps=27 format=3 uid="uid://cyi6fv3re5ax8"]
 
 [ext_resource type="Script" path="res://scripts/zombie.gd" id="1_hpuox"]
 [ext_resource type="Texture2D" uid="uid://2jt2ligy4rhb" path="res://assets/goose/zombie/zgoose_body.png" id="2_cs1kq"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://ov3tm784lju1" path="res://assets/goose/zombie/zgoose_eye.png" id="4_5yxy6"]
 [ext_resource type="Texture2D" uid="uid://dt6tbaimoqbe6" path="res://assets/goose/zombie/zgoose_beak.png" id="5_mbnro"]
 [ext_resource type="Texture2D" uid="uid://bnfhhbiconnou" path="res://assets/smoke.png" id="6_n75ba"]
+[ext_resource type="PackedScene" uid="uid://dfb4xc3hcmto3" path="res://scenes/sound.tscn" id="7_efvyj"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7ar7g"]
 size = Vector3(0.3, 0.299805, 0.230225)
@@ -869,6 +870,20 @@ tracks/8/keys = {
 "points": PackedFloat32Array(0.00385603, -0.25, 0, 0.25, 0, -0.0254932, -0.25, 0, 0.25, 0, 0.00385603, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0, 0.5, 1)
 }
+tracks/9/type = "method"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath(".")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0.2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"get_block_below"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_inn0i"]
 resource_name = "swimming"
@@ -914,7 +929,6 @@ tracks/2/keys = {
 [sub_resource type="Animation" id="Animation_aqyii"]
 resource_name = "walk"
 loop_mode = 1
-step = 0.05
 tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -1014,6 +1028,20 @@ tracks/8/keys = {
 "points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, -0.0143593, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0, 0.5, 1)
 }
+tracks/9/type = "method"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath(".")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"get_block_below"
+}]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tkf3m"]
 _data = {
@@ -1104,12 +1132,14 @@ texture_filter = 0
 texture = ExtResource("3_u3yq5")
 
 [node name="Eye" type="Sprite3D" parent="Sprites"]
+transform = Transform3D(0.999895, -0.0144844, 0, 0.0144844, 0.999895, 0, 0, 0, 1, 0, -0.00443509, 0)
 sorting_offset = 1.0
 alpha_cut = 2
 texture_filter = 0
 texture = ExtResource("4_5yxy6")
 
 [node name="Beak" type="Sprite3D" parent="Sprites"]
+transform = Transform3D(0.999895, -0.0144844, 0, 0.0144844, 0.999895, 0, 0, 0, 1, 0, -0.00443509, 0)
 sorting_offset = 0.5
 alpha_cut = 2
 texture_filter = 0
@@ -1157,6 +1187,8 @@ fixed_fps = 60
 visibility_aabb = AABB(-3.65761, -2.29458, -2.44494, 6.91928, 7.81257, 5.22592)
 process_material = SubResource("ParticleProcessMaterial_dc3l0")
 draw_pass_1 = SubResource("QuadMesh_7pn6o")
+
+[node name="Sound" parent="." instance=ExtResource("7_efvyj")]
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="body_entered" from="PlayerDetect" to="." method="_on_player_detect_body_entered"]
