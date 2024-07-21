@@ -32,7 +32,7 @@ var current_block_type: blockType
 
 func step() -> void:
 	stream = load(random_sound_from_dir(STEP_SOUNDS[current_block_type]))
-	play()	
+	play()
 func match_block_name(block_name: String) -> void:
 	match block_name:
 		"Grass":
@@ -48,10 +48,11 @@ func match_block_name(block_name: String) -> void:
 func random_sound_from_dir(path: String) -> String:
 	var dir := DirAccess.open(path)
 	var file_path: String = path
+	
 	@warning_ignore("integer_division")
 	var rand_index := randi_range(0, dir.get_files().size() - 1) / 2
-	file_path += dir.get_files()[rand_index * 2]
-	return file_path
+	file_path += dir.get_files()[(rand_index * 2)]
+	return file_path.trim_suffix(".import")
 
 func enter_water() -> void:
 	stream = load(random_sound_from_dir(WATER_SOUNDS.Enter))

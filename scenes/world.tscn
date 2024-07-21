@@ -1095,6 +1095,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.4, 1.25, 0)
 total_jumps = 1
 default_water_offset = Vector2(-10, 10)
 
+[node name="Camera3D" parent="Player" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.4, 5, 14)
+
 [node name="Features" type="Node3D" parent="."]
 
 [node name="WaterNode" type="Node3D" parent="Features"]
@@ -1409,3 +1412,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 1.25, 0)
 [connection signal="body_entered" from="Features/Respawn/Begin" to="Features/Respawn/Begin" method="_on_body_entered"]
 [connection signal="animation_finished" from="Enemies/ZombieDecoy1/AnimationPlayer" to="Enemies/ZombieDecoy1" method="_on_animation_player_animation_finished"]
 [connection signal="body_entered" from="WinArea" to="." method="_on_win_area_body_entered"]
+
+[editable path="Player"]
