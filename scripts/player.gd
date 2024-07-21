@@ -238,7 +238,9 @@ func die() -> void:
 	await get_tree().create_timer(0.5).timeout
 	
 	sprites.visible = false
-
+	
+	sound.stream = load(sound.random_sound_from_dir(sound.HURT_SOUNDS))
+	sound.play()
 	particles.restart()
 	await particles.finished
 	await get_tree().create_timer(0.5).timeout
