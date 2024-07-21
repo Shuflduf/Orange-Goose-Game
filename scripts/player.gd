@@ -204,6 +204,8 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 
 func take_damage(damage: int) -> void:
 	health -= damage
+	sound.stream = load(sound.random_sound_from_dir(sound.HURT_SOUNDS))
+	sound.play()
 	update_health_ui()
 	
 	if health <= 0:

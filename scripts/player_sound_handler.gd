@@ -24,6 +24,8 @@ const WATER_SOUNDS = {
 	"Ambience": "res://assets/sounds/water/ambience.ogg"
 	}
 
+const HURT_SOUNDS = "res://assets/sounds/player/hurt/"
+
 var current_block_type: blockType
 
 func step() -> void:
