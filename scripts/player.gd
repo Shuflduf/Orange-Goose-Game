@@ -268,6 +268,9 @@ func win() -> void:
 	won = true
 	await tween_death_cam()
 	await get_tree().create_timer(0.5).timeout
+	
+	sound.stream = load(sound.YIPEE)
+	sound.play()
 	win_particles.restart()
 	await win_particles.finished
 	await get_tree().create_timer(0.5).timeout

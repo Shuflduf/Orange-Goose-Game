@@ -26,6 +26,8 @@ const WATER_SOUNDS = {
 
 const HURT_SOUNDS = "res://assets/sounds/player/hurt/"
 
+const YIPEE = "res://assets/sounds/player/yippee-tbh.ogg"
+
 var current_block_type: blockType
 
 func step() -> void:
