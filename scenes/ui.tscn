@@ -28,16 +28,6 @@ script = ExtResource("1_ftrcb")
 modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 
-[node name="Timer" type="Label" parent="."]
-layout_mode = 0
-offset_left = 32.0
-offset_top = 32.0
-offset_right = 219.0
-offset_bottom = 82.0
-text = "50:20:583"
-label_settings = SubResource("LabelSettings_s8pur")
-script = ExtResource("3_25fe0")
-
 [node name="Pause" type="Control" parent="."]
 layout_mode = 1
 anchors_preset = 15
@@ -140,6 +130,16 @@ mouse_default_cursor_shape = 2
 theme_override_fonts/font = ExtResource("2_21lko")
 theme_override_font_sizes/font_size = 36
 text = "Main Menu"
+
+[node name="Timer" type="Label" parent="."]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 32.0
+offset_right = 219.0
+offset_bottom = 82.0
+text = "50:20:583"
+label_settings = SubResource("LabelSettings_s8pur")
+script = ExtResource("3_25fe0")
 
 [connection signal="pressed" from="Pause/CenterContainer/VBoxContainer/Continue" to="Pause" method="_on_continue_pressed"]
 [connection signal="pressed" from="Pause/CenterContainer/VBoxContainer/Restart" to="Pause" method="_on_restart_pressed"]

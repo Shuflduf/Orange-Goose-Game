@@ -9,6 +9,8 @@ extends CharacterBody3D
 @onready var heal_timer: Timer = $HealTimer
 @onready var particles: GPUParticles3D = $DeathParticles
 @onready var win_particles: GPUParticles3D = $WinParticles
+@onready var walk_sound: AudioStreamPlayer3D = $WalkSound
+
 @onready var timer: Label = ui.timer
 @onready var health_ui: Panel = ui.health_ui
 @onready var pause: Control = ui.pause
@@ -20,6 +22,7 @@ extends CharacterBody3D
 @export var jump_height := 11.0
 @export var total_jumps := 2
 @export var max_health := 3
+@export var step_freq := 0.2
 
 @export_category("Camera Offsets")
 @export var default_water_offset := Vector2(0, 10)
@@ -40,6 +43,7 @@ var health := 0
 var following_player_y := false
 var default_cam_pos: Vector3
 var respawn_point: Vector3
+var last_step: float
 
 var running := false
 var dead := false
@@ -60,6 +64,10 @@ func _ready() -> void:
 	ahead_offset = default_ahead_offset
 
 func _physics_process(delta: float) -> void:
+	
+	if !is_node_ready():
+		await ready
+	
 	if !won and !pause.visible:
 		timer.time += delta
 		timer.label_settings.font_color = Color.WHITE
@@ -79,6 +87,8 @@ func _physics_process(delta: float) -> void:
 	if dead or won or pause.visible:
 		return	
 		
+	get_block_below()
+	
 	if is_on_floor() and !in_water:
 		jumps = total_jumps
 	else:
@@ -106,6 +116,7 @@ func _physics_process(delta: float) -> void:
 		if is_on_floor() and !in_water:
 			if running:
 				animation.play("run")
+				last_step -= delta / 2
 			else:
 				animation.play("walk")
 		change_dir_left(input_dir < 0)
@@ -165,7 +176,6 @@ func _on_area_3d_area_exited(area: Area3D) -> void:
 
 
 func look_in_dir(vel: float) -> void:
-	print(vel)
 	var dir := 1 if sprites.scale.x > 0 else -1
 	sprites.rotation_degrees.z = clamp(vel * dir * 4, -70, 70)
 
@@ -256,3 +266,12 @@ func win() -> void:
 	await win_particles.finished
 	await get_tree().create_timer(0.5).timeout
 	ui.win()
+
+func get_block_below() -> void:
+	var gridmap: GridMap = get_parent().find_child("GridMap")
+	var p := global_position + Vector3(0, -2.5, 0)
+	var grid_coords := gridmap.local_to_map(Vector3i(p - gridmap.global_position))
+	var under := gridmap.get_cell_item(grid_coords)
+	if under != -1:
+		var block_name: String = gridmap.mesh_library.get_item_name(under)
+		print(block_name)

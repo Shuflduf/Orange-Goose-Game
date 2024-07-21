@@ -70,7 +70,7 @@ layout_mode = 2
 alignment = 1
 
 [node name="TextureRect" type="TextureRect" parent="CenterContainer/HBoxContainer"]
-custom_minimum_size = Vector2(392.45, 468.655)
+custom_minimum_size = Vector2(800, 800)
 layout_mode = 2
 size_flags_horizontal = 0
 texture = ExtResource("2_xk01c")
@@ -84,15 +84,14 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
 theme_override_fonts/font = ExtResource("3_qbd5o")
-theme_override_font_sizes/font_size = 41
+theme_override_font_sizes/font_size = 96
 text = "Start"
 
 [node name="Quit" type="Button" parent="CenterContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 0
 theme_override_fonts/font = ExtResource("3_qbd5o")
-theme_override_font_sizes/font_size = 41
+theme_override_font_sizes/font_size = 96
 text = "Quit"
 
 [connection signal="pressed" from="CenterContainer/HBoxContainer/VBoxContainer/Start" to="." method="_on_start_pressed"]
