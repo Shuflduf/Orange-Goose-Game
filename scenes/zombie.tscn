@@ -1189,6 +1189,7 @@ draw_pass_1 = SubResource("QuadMesh_7pn6o")
 
 [node name="Sound" parent="." instance=ExtResource("7_efvyj")]
 volume_db = 10.0
+bus = &"Master"
 script = ExtResource("8_unviu")
 
 [node name="GroanTimer" type="Timer" parent="Sound"]

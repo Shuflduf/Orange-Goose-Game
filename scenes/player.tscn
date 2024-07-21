@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://b88gw4ibis1fy"]
+[gd_scene load_steps=32 format=3 uid="uid://b88gw4ibis1fy"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_52rpn"]
 [ext_resource type="Texture2D" uid="uid://p3wddy5561vo" path="res://assets/goose/normal/goose_body.png" id="2_t8001"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://33oxghryxme5" path="res://scenes/ui.tscn" id="7_oyufn"]
 [ext_resource type="PackedScene" uid="uid://dfb4xc3hcmto3" path="res://scenes/sound.tscn" id="8_b8ex2"]
 [ext_resource type="AudioStream" uid="uid://bwy7w12vt2ovf" path="res://assets/sounds/step/grass/grass1.ogg" id="9_5326m"]
+[ext_resource type="AudioStream" uid="uid://nwfvvjst68cc" path="res://assets/sounds/music/calm1.ogg" id="10_fhrru"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_j5yi2"]
 size = Vector3(2.3, 2.6, 1)
@@ -991,6 +992,10 @@ draw_pass_1 = SubResource("QuadMesh_bfoda")
 [node name="Sound" parent="." instance=ExtResource("8_b8ex2")]
 stream = ExtResource("9_5326m")
 volume_db = 10.0
+
+[node name="Music" type="AudioStreamPlayer" parent="Sound"]
+stream = ExtResource("10_fhrru")
+autoplay = true
 
 [connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]
 [connection signal="area_exited" from="Area3D" to="." method="_on_area_3d_area_exited"]

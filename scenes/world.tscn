@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://cmby72mtdbdsg"]
+[gd_scene load_steps=39 format=3 uid="uid://cmby72mtdbdsg"]
 
 [ext_resource type="Texture2D" uid="uid://bwfh42umg77s4" path="res://assets/SkyHDR.hdr" id="1_hcn6c"]
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_qc3yi"]
@@ -48,6 +48,9 @@ size = Vector3(1, 26.1311, 9.17993)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_3mj02"]
 size = Vector3(1, 5, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g5ufj"]
+size = Vector3(74.9452, 23.146, 28.6064)
 
 [sub_resource type="Animation" id="Animation_6i8y6"]
 resource_name = "LONG_RESET"
@@ -1088,7 +1091,7 @@ transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75
 shadow_enabled = true
 
 [node name="Player" parent="." instance=ExtResource("3_5b2j6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 114, 5.25, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.4, 1.25, 0)
 total_jumps = 1
 default_water_offset = Vector2(-10, 10)
 
@@ -1105,6 +1108,7 @@ gravity_space_override = 3
 gravity_point_unit_distance = 198.305
 gravity_point_center = Vector3(0, 1, 0)
 gravity_direction = Vector3(0, 1, 0)
+audio_bus_override = true
 script = ExtResource("4_480l2")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Features/WaterNode/Water"]
@@ -1233,6 +1237,15 @@ metadata/_edit_group_ = true
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Features/Respawn/Begin"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0)
 shape = SubResource("BoxShape3D_3mj02")
+
+[node name="Cave" type="Area3D" parent="Features"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 165.009, 0, 0)
+audio_bus_override = true
+audio_bus_name = &"Cave"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Features/Cave"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.01486, 8.41878, 0.113678)
+shape = SubResource("BoxShape3D_g5ufj")
 
 [node name="Enemies" type="Node3D" parent="."]
 

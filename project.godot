@@ -24,6 +24,10 @@ SceneManager="*res://scenes/scene_manager.tscn"
 
 gdscript/warnings/untyped_declaration=2
 
+[display]
+
+window/size/mode=4
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/cba/plugin.cfg")

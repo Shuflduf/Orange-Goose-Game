@@ -1,9 +1,28 @@
-[gd_resource type="AudioBusLayout" format=3 uid="uid://cy8o8a71atlhw"]
+[gd_resource type="AudioBusLayout" load_steps=4 format=3 uid="uid://cy8o8a71atlhw"]
+
+[sub_resource type="AudioEffectDelay" id="AudioEffectDelay_j0f5o"]
+resource_name = "Delay"
+tap1_level_db = -12.0
+tap2_level_db = -24.0
+
+[sub_resource type="AudioEffectReverb" id="AudioEffectReverb_0npr4"]
+resource_name = "Reverb"
+
+[sub_resource type="AudioEffectAmplify" id="AudioEffectAmplify_iag8s"]
+resource_name = "Amplify"
+volume_db = -4.0
 
 [resource]
-bus/1/name = &"Walk"
+bus/0/send = &"Walk"
+bus/1/name = &"Cave"
 bus/1/solo = false
 bus/1/mute = false
 bus/1/bypass_fx = false
 bus/1/volume_db = 0.0
 bus/1/send = &"Master"
+bus/1/effect/0/effect = SubResource("AudioEffectDelay_j0f5o")
+bus/1/effect/0/enabled = true
+bus/1/effect/1/effect = SubResource("AudioEffectReverb_0npr4")
+bus/1/effect/1/enabled = true
+bus/1/effect/2/effect = SubResource("AudioEffectAmplify_iag8s")
+bus/1/effect/2/enabled = true

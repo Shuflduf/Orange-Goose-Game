@@ -8,9 +8,7 @@ format = 1
 
 [node name="Sound" type="AudioStreamPlayer3D"]
 stream = SubResource("AudioStreamWAV_5oraf")
-bus = &"Walk"
 script = ExtResource("1_gqxv2")
 
 [node name="Ambience" type="AudioStreamPlayer3D" parent="."]
 stream = SubResource("AudioStreamWAV_5oraf")
-bus = &"Walk"

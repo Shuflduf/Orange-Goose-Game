@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://33oxghryxme5"]
+[gd_scene load_steps=10 format=3 uid="uid://33oxghryxme5"]
 
 [ext_resource type="PackedScene" uid="uid://dqkuja7p25wcy" path="res://scenes/health_overlay.tscn" id="1_bwg3g"]
 [ext_resource type="Script" path="res://scripts/ui.gd" id="1_ftrcb"]
@@ -6,6 +6,22 @@
 [ext_resource type="Script" path="res://scripts/timer.gd" id="3_25fe0"]
 [ext_resource type="Script" path="res://scripts/pause_menu.gd" id="5_fmxa0"]
 [ext_resource type="Script" path="res://scripts/win_screen.gd" id="6_6hrsu"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_520o3"]
+font = ExtResource("2_21lko")
+font_size = 30
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 6
+shadow_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_wsy07"]
+font = ExtResource("2_21lko")
+font_size = 25
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 6
+shadow_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_s8pur"]
 font = ExtResource("2_21lko")
@@ -55,11 +71,11 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Pause/CenterContainer"]
+[node name="Buttons" type="VBoxContainer" parent="Pause/CenterContainer"]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="Continue" type="Button" parent="Pause/CenterContainer/VBoxContainer"]
+[node name="Continue" type="Button" parent="Pause/CenterContainer/Buttons"]
 layout_mode = 2
 focus_mode = 0
 mouse_default_cursor_shape = 2
@@ -67,7 +83,7 @@ theme_override_fonts/font = ExtResource("2_21lko")
 theme_override_font_sizes/font_size = 36
 text = "Continue"
 
-[node name="Restart" type="Button" parent="Pause/CenterContainer/VBoxContainer"]
+[node name="Restart" type="Button" parent="Pause/CenterContainer/Buttons"]
 layout_mode = 2
 focus_mode = 0
 mouse_default_cursor_shape = 2
@@ -75,13 +91,152 @@ theme_override_fonts/font = ExtResource("2_21lko")
 theme_override_font_sizes/font_size = 36
 text = "Restart"
 
-[node name="MainMenu" type="Button" parent="Pause/CenterContainer/VBoxContainer"]
+[node name="Controls" type="Button" parent="Pause/CenterContainer/Buttons"]
+layout_mode = 2
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme_override_fonts/font = ExtResource("2_21lko")
+theme_override_font_sizes/font_size = 36
+text = "View Controls"
+
+[node name="MainMenu" type="Button" parent="Pause/CenterContainer/Buttons"]
 layout_mode = 2
 focus_mode = 0
 mouse_default_cursor_shape = 2
 theme_override_fonts/font = ExtResource("2_21lko")
 theme_override_font_sizes/font_size = 36
 text = "Main Menu"
+
+[node name="Controls" type="VBoxContainer" parent="Pause/CenterContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Left" type="HBoxContainer" parent="Pause/CenterContainer/Controls"]
+layout_mode = 2
+alignment = 1
+
+[node name="Action" type="Label" parent="Pause/CenterContainer/Controls/Left"]
+layout_mode = 2
+text = "Move Left"
+label_settings = SubResource("LabelSettings_520o3")
+
+[node name="-" type="Label" parent="Pause/CenterContainer/Controls/Left"]
+layout_mode = 2
+text = " - "
+label_settings = SubResource("LabelSettings_520o3")
+
+[node name="Key" type="Label" parent="Pause/CenterContainer/Controls/Left"]
+layout_mode = 2
+text = "Left Arrow Key"
+label_settings = SubResource("LabelSettings_wsy07")
+
+[node name="Right" type="HBoxContainer" parent="Pause/CenterContainer/Controls"]
+layout_mode = 2
+alignment = 1
+
+[node name="Action" type="Label" parent="Pause/CenterContainer/Controls/Right"]
+layout_mode = 2
+text = "Move Right"
+label_settings = SubResource("LabelSettings_520o3")
+
+[node name="-" type="Label" parent="Pause/CenterContainer/Controls/Right"]
+layout_mode = 2
+text = " - "
+label_settings = SubResource("LabelSettings_520o3")
+
+[node name="Key" type="Label" parent="Pause/CenterContainer/Controls/Right"]
+layout_mode = 2
+text = "Right Arrow Key"
+label_settings = SubResource("LabelSettings_wsy07")
+
+[node name="Jump" type="HBoxContainer" parent="Pause/CenterContainer/Controls"]
+layout_mode = 2
+alignment = 1
+
+[node name="Action" type="Label" parent="Pause/CenterContainer/Controls/Jump"]
+layout_mode = 2
+text = "Jump"
+label_settings = SubResource("LabelSettings_520o3")
+
+[node name="-" type="Label" parent="Pause/CenterContainer/Controls/Jump"]
+layout_mode = 2
+text = " - "
+label_settings = SubResource("LabelSettings_520o3")
+
+[node name="Key" type="Label" parent="Pause/CenterContainer/Controls/Jump"]
+layout_mode = 2
+text = "Space"
+label_settings = SubResource("LabelSettings_wsy07")
+
+[node name="SwimUp" type="HBoxContainer" parent="Pause/CenterContainer/Controls"]
+layout_mode = 2
+alignment = 1
+
+[node name="Action" type="Label" parent="Pause/CenterContainer/Controls/SwimUp"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Swim Up"
+label_settings = SubResource("LabelSettings_520o3")
+
+[node name="-" type="Label" parent="Pause/CenterContainer/Controls/SwimUp"]
+layout_mode = 2
+text = " - "
+label_settings = SubResource("LabelSettings_520o3")
+
+[node name="Key" type="Label" parent="Pause/CenterContainer/Controls/SwimUp"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "Up Arrow Key"
+label_settings = SubResource("LabelSettings_wsy07")
+
+[node name="SwimDown" type="HBoxContainer" parent="Pause/CenterContainer/Controls"]
+layout_mode = 2
+alignment = 1
+
+[node name="Action" type="Label" parent="Pause/CenterContainer/Controls/SwimDown"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Swim Down/Fall"
+label_settings = SubResource("LabelSettings_520o3")
+
+[node name="-" type="Label" parent="Pause/CenterContainer/Controls/SwimDown"]
+layout_mode = 2
+text = " - "
+label_settings = SubResource("LabelSettings_520o3")
+
+[node name="Key" type="Label" parent="Pause/CenterContainer/Controls/SwimDown"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "Down Arrow Key"
+label_settings = SubResource("LabelSettings_wsy07")
+
+[node name="SwimDown2" type="HBoxContainer" parent="Pause/CenterContainer/Controls"]
+layout_mode = 2
+alignment = 1
+
+[node name="Action" type="Label" parent="Pause/CenterContainer/Controls/SwimDown2"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Sprint"
+label_settings = SubResource("LabelSettings_520o3")
+
+[node name="-" type="Label" parent="Pause/CenterContainer/Controls/SwimDown2"]
+layout_mode = 2
+text = " - "
+label_settings = SubResource("LabelSettings_520o3")
+
+[node name="Key" type="Label" parent="Pause/CenterContainer/Controls/SwimDown2"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "Shift"
+label_settings = SubResource("LabelSettings_wsy07")
+
+[node name="Done" type="Button" parent="Pause/CenterContainer/Controls"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("2_21lko")
+theme_override_font_sizes/font_size = 41
+text = "Done"
 
 [node name="WinScreen" type="Control" parent="."]
 visible = false
@@ -141,8 +296,10 @@ text = "50:20:583"
 label_settings = SubResource("LabelSettings_s8pur")
 script = ExtResource("3_25fe0")
 
-[connection signal="pressed" from="Pause/CenterContainer/VBoxContainer/Continue" to="Pause" method="_on_continue_pressed"]
-[connection signal="pressed" from="Pause/CenterContainer/VBoxContainer/Restart" to="Pause" method="_on_restart_pressed"]
-[connection signal="pressed" from="Pause/CenterContainer/VBoxContainer/MainMenu" to="Pause" method="_on_main_menu_pressed"]
+[connection signal="pressed" from="Pause/CenterContainer/Buttons/Continue" to="Pause" method="_on_continue_pressed"]
+[connection signal="pressed" from="Pause/CenterContainer/Buttons/Restart" to="Pause" method="_on_restart_pressed"]
+[connection signal="pressed" from="Pause/CenterContainer/Buttons/Controls" to="Pause" method="_on_controls_pressed"]
+[connection signal="pressed" from="Pause/CenterContainer/Buttons/MainMenu" to="Pause" method="_on_main_menu_pressed"]
+[connection signal="pressed" from="Pause/CenterContainer/Controls/Done" to="Pause" method="_on_done_pressed"]
 [connection signal="pressed" from="WinScreen/CenterContainer/VBoxContainer/Restart" to="WinScreen" method="_on_restart_pressed"]
 [connection signal="pressed" from="WinScreen/CenterContainer/VBoxContainer/MainMenu" to="WinScreen" method="_on_main_menu_pressed"]
