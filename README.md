@@ -1,5 +1,7 @@
 # Orange Goose Game
- 
+
+`The {number} entry in the goose rainbow`
+
 ## Join Orange Goose on a crazy adventure through... MINE CRAFT!!
 
 #### Explore various biomes and fight enemies through the easy-to-learn, hard-to-master combat system!
